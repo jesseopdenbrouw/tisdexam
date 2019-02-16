@@ -3,8 +3,8 @@
 DOCUMENT CLASS tisdexam
 =======================
 
-versie: 2.0c
-datum:  13-sep-2018
+versie: 2.0d
+datum:  16-feb-2019
 
 
 -----------------------
@@ -21,7 +21,13 @@ omdat de logo's van TIS erg veel ruimte innemem.
 LEES VOORAL DE DOCUMENTATIE.
 
 
-Deze document class is getest met TeXlive 2018 en TeXmaker 4.5/5.0.2.
+Deze document class is getest met TeXlive 2018 en TexStudio 2.12.14
+
+Nieuw in versie 2.0d
+--------------------
+* 10 pt is nu ook echt 10 pt
+* class is Lualatex en Xelatex aware (Rufus)
+* Diverse gecommentarieerde code verwijderd.
 
 
-Jesse, 13-sep-2018
+Jesse, 16-feb-2019
