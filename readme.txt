@@ -3,8 +3,8 @@
 DOCUMENT CLASS tisdexam
 =======================
 
-versie: 2.0b
-datum:  27-aug-2018
+versie: 2.0c
+datum:  13-sep-2018
 
 
 -----------------------
@@ -24,4 +24,4 @@ LEES VOORAL DE DOCUMENTATIE.
 Deze document class is getest met TeXlive 2018 en TeXmaker 4.5/5.0.2.
 
 
-Jesse, 27-aug-2018
+Jesse, 13-sep-2018
