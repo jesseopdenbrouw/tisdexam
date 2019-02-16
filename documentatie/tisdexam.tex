@@ -4,7 +4,7 @@
 %%
 %%   (c)2018, J.E.J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
-%%   v2.0b -- 2018/08/27
+%%   v2.0c -- 2018/09/13
 %%
 %%   
 %%
@@ -79,11 +79,7 @@
 \usepackage[font=footnotesize,format=plain,labelfont=bf,textfont=sl]{caption}
 \captionsetup[table]{justification=raggedright,singlelinecheck=off,skip=4pt}
 
-%% Command \overbar zet de bar iets hoger dan \overline
-%% Werkt helaas niet genest
-\newcommand*{\overbar}[1]{%
-  \overline{\mbox{#1}\raisebox{2.3mm}{}}%
-}
+%% Zet \bar altijd op een strut
 \newcommand*{\oline}[1]{\overline{#1\mathstrut}}
 
 %% PDF Version and compression...
@@ -167,6 +163,7 @@
 \maketitle
 \setcounter{footnote}{1}
 
+
 \section{Inleiding}
 \label{sec:abstract}
 De \DocClass{tisdexam} document class kan gebruikt worden om toetsen voor
@@ -191,7 +188,7 @@ Een aantal \DocClass{exam} class commands is gewijzigd en twee
 
 
 \section{Gebruik en class opties}
-De document class wordt op de gebruikelijke manier geladen met
+De document class wordt op de gebruikelijke manier geladen met:
 \bigskip
 
 \verb|\documentclass[| \textsl{opties} \verb|]{tisdexam}|
@@ -199,7 +196,7 @@ De document class wordt op de gebruikelijke manier geladen met
 
 \noindent
 waarbij \textsl{opties} een lijst van opties is. De opties van \DocClass{tisdexam} zijn
-onderstaand opgesomd.
+onderstaand opgesomd:
 \smallskip
 
 \Option{dutch} -- gebruik nederlandse spelling en toetsvoorblad
@@ -494,6 +491,7 @@ Een aantal commando's uit de \DocClass{exam} class is aangepast.
 
 \medskip\noindent
 Het commando \verb|\droppoints| is opnieuw gedefinieerd als
+
 \begin{lstlisting}
 \def\droppoints{%
   \leavevmode\unskip\nobreak
