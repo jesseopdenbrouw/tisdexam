@@ -2,9 +2,9 @@
 %%
 %%   tisdexam.tex
 %%
-%%   (c)2017, J.E.J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
+%%   (c)2018, J.E.J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
-%%   v2.0 -- 2017/08/24
+%%   v2.0b -- 2018/08/27
 %%
 %%   
 %%
@@ -76,7 +76,7 @@
 \setlength{\mathindent}{1em}
 
 %% Making captions nicer...
-\usepackage[font=footnotesize,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage[font=footnotesize,format=plain,labelfont=bf,textfont=sl]{caption}
 \captionsetup[table]{justification=raggedright,singlelinecheck=off,skip=4pt}
 
 %% Command \overbar zet de bar iets hoger dan \overline
@@ -210,7 +210,7 @@ onderstaand opgesomd.
 
 \Option{american} -- gebruik amerikaanse spelling en toetsvoorblad
 
-\Option{dyslect} -- zet een aantal zaken goed voor dyslecten
+\Option{dyslect} -- typeer het document als dyslect
 
 \Option{concept} -- typeer het document als concept
 
@@ -466,7 +466,7 @@ wordt uitgevoerd op het moment van uitvoeren van het commando. Voorbeeld:
   ...
 \end{lstlisting}
 
-\noindent
+\medskip\noindent
 Met het command \verb|\nosetuphyperrefheaderfooter| wordt het automatisch
 gebruik van de \Package{hyperref} package \'{e}n headers en footers uitgezet.
 De gebruiker moet dan zelf de package laden en opzetten. Dat geldt ook
@@ -488,7 +488,9 @@ Een aantal commando's uit de \DocClass{exam} class is aangepast.
 
 \verb|\partlabel| -- opnieuw gedefinieerd als \verb|\thepartno)| (let op het haakje).
 
-\verb|\choicelabel| -- opnieuw gedefinieerd als \verb|\alph{choice})| (let op het haakje).
+\verb|\thechoice| -- opnieuw gedefinieerd als \verb|\alph{choice}|.
+
+\verb|\choicelabel| -- opnieuw gedefinieerd als \verb|\thechoice)| (let op het haakje).
 
 \medskip\noindent
 Het commando \verb|\droppoints| is opnieuw gedefinieerd als
@@ -533,12 +535,12 @@ met de geselecteerde taal.
 \section{Gebruikte packages}
 In de `non-vanilla mode' worden de volgende packages gebruikt:
 
-xcolor, babel, geometry, hyperref, amssymb
+\texttt{xcolor}, \texttt{babel}, \texttt{geometry}, \texttt{hyperref}, \texttt{amssymb}
 
 \medskip
-In de `vanilla-mode'worden de volgende packages gebruikt:
+In de `vanilla-mode' worden de volgende packages gebruikt:
 
-xcolor , babel, geometry, amssymb
+\texttt{xcolor}, \texttt{babel}, \texttt{geometry}, \texttt{amssymb}
 
 
 \section{Meldingen}
@@ -779,6 +781,8 @@ Het goede antwoord op vraag \ref{opg:opg3} is \ref{ans:opg3}.
 \noprintanswers
 %\toetsnaamkort{INLDIG (herkansing)}
 %\setlength{\parindent}{\myparindent}
+
+\thispagestyle{empty}
 \makecoverpage
 
 
