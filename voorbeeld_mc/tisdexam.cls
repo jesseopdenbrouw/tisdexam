@@ -11,6 +11,7 @@
 %%         2.0a -- changed some colour from SkyBlue to black as printed on the
 %%                 coverpage
 %%         2.0b -- smaller inline faculty logo reduces compile time
+%%         2.0c -- changed head/foot to reflect double sided printing
 %% 
 %% Class options:
 %%  dutch - load dutch spelling options
@@ -106,8 +107,8 @@
 \pdfsuppressptexinfo=1
 
 %% Credentials
-\def\fileversion{2.0b}
-\def\filedate{2018/08/27}
+\def\fileversion{2.0c}
+\def\filedate{2018/09/13}
 \edef\tisdexamfileversion{\fileversion}
 \edef\tisdexamfiledate{\filedate}
 
@@ -552,7 +553,7 @@ Write your name and studentnumber on all documents. \\
 \underline{Belangrijk:} \\
 Voor dit tentamen gelden de regels uit de toetsregeling van het Onderwijs- en Examenreglement. Dit document is aanwezig in het toetslokaal; \\
 Je dient zelf te controleren of je alle pagina's en vragen van dit tentamen hebt ontvangen; \\
-Dit tentamen is \textcolor{black}{enkelzijdig} geprint; \\
+Dit tentamen is \textcolor{black}{dubbelzijdig} geprint; \\
 Schrijf je naam en studentnummer op alle documenten.
 \end{tabular}
 \end{table}
@@ -732,11 +733,12 @@ Schrijf je naam en studentnummer op alle documenten.
 \pagestyle{headandfoot}
 \runningfootrule
 \ifconcept
-\runningheader{}{}{CONCEPT}
+%\runningheader{}{}{CONCEPT}
+\runningheader{\oddeven{}{CONCEPT}}{}{\oddeven{CONCEPT}{}}
 \else
 \runningheader{}{}{}
 \fi
-\runningfooter{\ifprintanswers\tisdexam@uitwerkingenspel\ \else\fi\tisdexam@toetsnaamkort}{\tisdexam@toetsdatumkort}{\thepage\ / \numpages}
+\runningfooter{\oddeven{\ifprintanswers\tisdexam@uitwerkingenspel\ \fi\tisdexam@toetsnaamkort}{\thepage\,/\,\numpages}}{\tisdexam@toetsdatumkort}{\oddeven{\thepage\,/\,\numpages}{\ifprintanswers\tisdexam@uitwerkingenspel\ \fi\tisdexam@toetsnaamkort}}
 }
 
 %% Do not set up hyperref et al. You have to do it yourself.
@@ -745,7 +747,7 @@ Schrijf je naam en studentnummer op alle documenten.
 }
 \fi
 
-%% Get the currect \parindent, needed for indenting the coverpage is
+%% Get the currect \parindent, needed for indenting the coverpage if
 %% parskip is used.
 \newlength\tisdexam@oldparindent
 \setlength{\tisdexam@oldparindent}{\parindent}
@@ -761,7 +763,7 @@ Schrijf je naam en studentnummer op alle documenten.
 \iftisdexam@hyperrefsetupis
 \else
 \setuphyperrefheaderfooter
-\ClassWarning{tisdexam}{Package hyperref and header and footers automaticly set up at begin of document}
+\ClassWarning{tisdexam}{Package hyperref and header and footers automatically set up at begin of document}
 \fi
 \fi
 %% Check if parskip is loaded, parskip messes up the coverpage layout
@@ -778,6 +780,3 @@ Schrijf je naam en studentnummer op alle documenten.
 \endinput
 %%
 %% End of file `tisdexam.cls'.
-
-
-
