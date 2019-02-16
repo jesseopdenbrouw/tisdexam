@@ -1,7 +1,7 @@
 %
 % Automaticly generated mastercard components
 % for exam INLMIC (proeftoets) dd 01-01-1970
-% File written at 2017/07/05
+% File written at 2018/08/27
 %
 
 \newcommand{\examcreatorname}{J.E.J. op den Brouw}
@@ -11,5 +11,5 @@
 \newcommand{\examversion}{A}
 \newcommand{\examdate}{01-01-1970}
 \newcommand{\examcomment}{Cesuur: 0 goed = 1, 24 goed = 10\newline Lineaire verdeling}
-\newcommand{\examaq}{1C,2B,3D,4C,5B,6D,7C,8A,9A,10B,11D,12A,13C,14B,15B,16A,17C,18D,19A,20D,21C,22D,23B,24A}
+\newcommand{\examaq}{1c,2b,3d,4c,5b,6d,7c,8a,9a,10b,11d,12a,13c,14b,15b,16a,17c,18d,19a,20d,21c,22d,23b,24a}
 \newcommand{\examenglish}{no}
