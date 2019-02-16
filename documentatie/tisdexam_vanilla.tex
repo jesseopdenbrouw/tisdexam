@@ -1,0 +1,145 @@
+%%
+%%
+%%   tisdexam_vanilla.tex
+%%
+%%   (c)2017, J.E.J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
+%%
+%%   v2.0 -- 2017/08/24
+%%
+%%   
+%%
+
+
+%% The document class is TISD Exam...
+\documentclass[dutch,a4paper,12pt,addpoints,fleqn,concept,dyslect,vanilla]{tisdexam}
+
+
+%% The info for the cover sheet needs to be set up before the beginning of document
+\locatie{Delft}
+\opleiding{Elektrotechniek}
+\toetsnaam{INLDIG}
+\toetsnaamkort{INLDIG}
+\groep{EP11, EP12}
+\toetsdatum{30 januari 2014}
+	\toetsdatumkort{30-01-2014}
+\tijd{13:00 -- 14:30 uur}
+\opmerkingen{Bij dit tentamen mogen de boeken en dictaten gebruikt worden.}
+\cesuur{Bij elke opgave staat het maximum aantal te behalen punten genoteerd, in totaal is maximaal \numpoints{} punten te behalen.}
+\opsteller{J.E.J. op den Brouw}
+\tweedelezer{J.Z.M. Broeders}
+\module{}
+\gelinieerdpapiertrue
+\kladpapiertrue
+\grafischerekenmachinetrue
+\boekendictatentrue
+\boekendictaten{zie opmerkingen}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+%% Use packages...
+\usepackage{array}
+\setlength{\mathindent}{1em}
+
+%% Include graphics files
+\usepackage{graphicx}
+
+%% Enumerate items
+\usepackage{enumitem}
+
+%% Using floats
+\usepackage{float}
+
+%% Used dashed lines in tables
+\usepackage{arydshln}
+
+%% Use the AMS Mathematical characters
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+%% Making captions nicer...
+\usepackage[font=footnotesize,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\captionsetup[table]{justification=raggedright,singlelinecheck=off,skip=4pt}
+
+%% Command \overbar zet de bar iets hoger dan \overline
+%% Werkt helaas niet genest
+\newcommand*{\overbar}[1]{%
+  \overline{\mbox{#1}\raisebox{2.3mm}{}}%
+}
+\newcommand*{\oline}[1]{\overline{#1\mathstrut}}
+
+%% PDF Version and compression...
+\pdfminorversion=5
+\pdfobjcompresslevel=2
+
+%
+\usepackage{parskip}
+
+
+%% At last, the document...
+\begin{document}
+
+\makecoverpage
+
+\ifvanilla
+Dit document is met de \verb|tisdexam| class opgemaakt met de optie
+\verb|vanilla|. Dat houdt in dat bijna alle toegevoegde features van
+de \verb|tisdexam| class zijn gedeactiveerd, alleen de
+\verb|\makecoverpage| macro werkt nog.
+\else
+Dit document is opgemaakt in normal-mode of non-vanilla-mode. Om de
+vanilla-mode te gebruiken moet de optie \verb|vanilla| in de optielijst
+van de documentclass gezet worden.
+\fi
+
+\ifconcept
+De \verb|concept|-optie staat aan.
+\else
+De \verb|concept|-optie staat uit.
+\fi
+
+\ifdyslect
+De \verb|dyslect|-optie staat aan.
+\else
+De \verb|dyslect|-optie staat uit.
+\fi
+
+\bigskip
+\bigskip
+
+\begin{questions}
+        
+\question[10]
+Hoeveel is $1+1$?
+
+\question
+Gegeven de functies: $f(x) = x^3+3x$ en $g(x) = x^2 +6x$
+\begin{parts}
+\part[3] Bepaal de nulpunten van deze functies.
+\part[5] Bepaal de extremen van deze functies.
+\part[7] Bepaal de snijpunten van $f(x)$ met $g(x)$.
+\end{parts}
+
+\question[5]
+\label{opg:opg3}
+Een gebruiker wil van R25 bit 6 en 1 inverteren en bit 4 en 2 op nul zetten.
+Hiervoor zijn een EXOR- en een AND-masker nodig. Welke waardes zijn correct?
+\begin{choices}
+	\choice EXOR = 0xBD, AND = 0x14
+	\choice EXOR = 0x42, AND = 0x14
+	\choice EXOR = 0xBD, AND = 0xEB
+	\CorrectChoice \label{ans:opg3} EXOR = 0x42, AND = 0xEB
+\end{choices}
+
+Bij vraag \ref{opg:opg3} is het label \verb|opg:opg3| geplaatst zodat hieraan
+gerefereerd kan worden. Bij het goede antwoord is het label \verb|ans:opg3|
+geplaatst. Hiermee kan het goede antwoord afgedrukt worden.
+
+Het goede antwoord op vraag \ref{opg:opg3} is \ref{ans:opg3}.
+
+\end{questions}
+
+
+\end{document}

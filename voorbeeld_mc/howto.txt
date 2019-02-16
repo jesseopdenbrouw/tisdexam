@@ -1,0 +1,35 @@
+
+Hoe te draaien.
+===============
+
+
+Ik maak gebruik van TexMaker als editor, zie
+http://www.xm1math.net/texmaker/
+
+Ik gebruik TexLive als distributie.
+
+
+1. Open de toets pINLMIC_2013.tex
+
+2. Zet de class optie 'answers' aan (in de lijst van class opties plaatsen)
+
+3. Draai Latex 3x (om alle referenties goed te krijgen)
+
+De toets met uitwerkingen is te vinden in pINLMIC_2013.pdf
+
+
+De toets genereert een bestand answers.ans met daarin alle
+commando's/macro's voor de volgende stappen.
+
+
+4. Open het antwoordenblad pINLMIC_2013_antw.tex
+
+5. Draai Latex 1x.
+
+
+De antwoorden zijn te vinden in pINLMIC_2013_antw.tex.pdf.
+Dit is een mastercard die gebruikt wordt door het toetsserviceburo.
+
+
+Jesse 23-9-2015
+
