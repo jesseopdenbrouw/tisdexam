@@ -5,13 +5,16 @@
 %% Exam document class for creating exams at Academy of Technology, Innovation
 %% and Society - Delft (TISD) of the The Hague University of Applied Sciences.
 %%
-%% (c)2018, J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
+%% (c)2019, J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
 %% Version 2.0  -- initial release
 %%         2.0a -- changed some colour from SkyBlue to black as printed on the
 %%                 coverpage
 %%         2.0b -- smaller inline faculty logo reduces compile time
 %%         2.0c -- changed head/foot to reflect double sided printing
+%%         2.0d -- Changed font changing code for cover page to \usefont{T1}{phv}{m}{n},
+%%                 supported by Lua and Xe. removed PTEX banner removal, 10 pt now
+%%                 really uses 10 pt. 
 %% 
 %% Class options:
 %%  dutch - load dutch spelling options
@@ -103,12 +106,9 @@
 %% In vanilla-mode, the tisdexam class loads the following packages:
 %%  xcolor, babel, geometry
 
-%% Suppress PTEX.FullBanner
-\pdfsuppressptexinfo=1
-
 %% Credentials
-\def\fileversion{2.0c}
-\def\filedate{2018/09/13}
+\def\fileversion{2.0d}
+\def\filedate{2019/02/16}
 \edef\tisdexamfileversion{\fileversion}
 \edef\tisdexamfiledate{\filedate}
 
@@ -141,7 +141,7 @@
 %% Default is 12 pt.
 \DeclareOption{10pt}{\ClassWarningNoLine{tisdexam}{Do not use font size
     `10pt'. It is too small to read.}%
-    %\def\tisdexam@size{11pt}%
+    \def\tisdexam@size{10pt}%
     }
 \DeclareOption{11pt}{\def\tisdexam@size{11pt}}
 \DeclareOption{12pt}{\def\tisdexam@size{12pt}}
@@ -206,10 +206,6 @@
 \newcommand{\tijd}[1]{\def\tisdexam@tijd{#1}}
 \newcommand{\aantalbladzijden}[1]{\def\tisdexam@aantalbladzijden{#1}}
 \newcommand{\aantalvragen}[1]{\def\tisdexam@aantalvragen{#1}}
-%%%\newcommand{\hulpmiddelen}[1]{\ClassWarningNoLine{tisdexam}{Class command `hulpmiddelen' is deprecated as of version 1.7}}
-%%%\newcommand{\gebruikrekenmachine}[1]{\def\tisdexam@gebruikrekenmachine{#1}}
-%%%\newcommand{\toegestaan}[1]{\def\tisdexam@toegestaan{#1}}
-%%%\newcommand{\toetsinleveren}[1]{\def\tisdexam@toetsinleveren{#1}}
 \newcommand{\opmerkingen}[1]{\def\tisdexam@opmerkingen{#1}}
 \newcommand{\uitwerkingen}[1]{\def\tisdexam@uitwerkingenspel{#1}}
 \newcommand{\opsteller}[1]{\def\tisdexam@opsteller{#1}}
@@ -241,9 +237,6 @@
 %\def\tisdexam@aantalvragen{\numopenquestions{} open vragen\newline
 %                            \nummultquestions{} meerkeuzevragen}
 %\fi
-%%%\def\tisdexam@gebruikrekenmachine{Grafische rekenmachine}
-%%%\def\tisdexam@toegestaan{\textbf{??}}
-%%%\def\tisdexam@toetsinleveren{ja/nee}
 \def\tisdexam@opmerkingen{\hspace{\stretch{1}}\rule{\linewidth}{0.1pt}\hspace{\stretch{1}}\newline\hspace{\stretch{1}}\rule{\linewidth}{0.1pt}\hspace{\stretch{1}}}
 \def\tisdexam@cesuur{\hspace{\stretch{1}}\rule{\linewidth}{0.1pt}\hspace{\stretch{1}}\newline\hspace{\stretch{1}}\rule{\linewidth}{0.1pt}\hspace{\stretch{1}}}
 \def\tisdexam@module{\textbf{??}}
@@ -284,16 +277,8 @@
 \newif\iftisdexam@hyperrefsetupis
 \tisdexam@hyperrefsetupisfalse
 %%\fi
-%%%%\documentclass[12pt,a4paper]{article}
-%%%%\usepackage{geometry}
-%%%%\newgeometry{bindingoffset=0.0in,left=2cm,right=2cm,top=1.5cm,
-%%%%             bottom=0.2in,footskip=.0in}
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{amssymb}
-%%%%\usepackage{helvet}
-%%%%%\usepackage{array}
-%%%%\usepackage{enumitem,amssymb}
-%%%%\usepackage{amsmath}
 
 %%
 %% Begin coverpage
@@ -305,13 +290,13 @@
 %%English cover page not suported.
 \tisdexam@hspacecorrection\begin{minipage}[c]{0.48\textwidth}
 \vspace*{0.4cm}
-{\fontfamily{phv}\fontsize{16pt}{20pt}\selectfont Exam Cover}
+{\usefont{T1}{phv}{m}{n}\fontsize{16pt}{20pt}\selectfont Exam Cover}
 
 \vspace*{0.55cm}
-{\fontfamily{phv}\fontsize{11pt}{12pt}\selectfont Student name:\quad \line(1,0){120}}
+{\usefont{T1}{phv}{m}{n}\fontsize{11pt}{12pt}\selectfont Student name:\quad \line(1,0){120}}
 
 \vspace*{0.55cm}
-{\fontfamily{phv}\fontsize{11pt}{12pt}\selectfont ID-number: \quad \line(1,0){120}}
+{\usefont{T1}{phv}{m}{n}\fontsize{11pt}{12pt}\selectfont ID-number: \quad \line(1,0){120}}
 \end{minipage}
 \begin{minipage}[c]{0.48\textwidth}
 {\setlength{\unitlength}{0.125pt}%
@@ -320,37 +305,37 @@
 \end{picture}}
 
 \vspace*{0.10cm}
-{\hspace*{4.1cm}\fontfamily{phv}\fontsize{10pt}{11pt}\selectfont Location: \textbf{\textcolor{SkyBlue}{\tisdexam@locatie}}}
+{\hspace*{4.1cm}\usefont{T1}{phv}{m}{n}\fontsize{10pt}{11pt}\selectfont Location: \textbf{\textcolor{SkyBlue}{\tisdexam@locatie}}}
 \end{minipage}
 
 \begin{table}[ht]
 \centering
 \begin{tabular}{|p{0.45\textwidth}|p{0.45\textwidth}|}
 \hline\vspace*{0.00cm}%
-{\fontfamily{phv}\fontsize{14pt}{18pt}\selectfont\bfseries Program:
+{\usefont{T1}{phv}{m}{n}\fontsize{14pt}{18pt}\selectfont\bfseries Program:
 
 \vspace*{7pt}
 \textcolor{black}{\tisdexam@opleiding}} \vspace*{0.1cm}& \vspace*{0.00cm}%
-{\fontfamily{phv}\fontsize{14pt}{18pt}\selectfont\bfseries Course / Test:
+{\usefont{T1}{phv}{m}{n}\fontsize{14pt}{18pt}\selectfont\bfseries Course / Test:
 
 \vspace*{7pt}
 \textcolor{black}{\tisdexam@toetsnaam}}\\ \hline
 \begin{tabular}{p{2.5cm}l}
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Lecturer:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@opsteller}} \\
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Second Lecturer:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@tweedelezer}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Lecturer:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@opsteller}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Second Lecturer:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@tweedelezer}} \\
 \end{tabular}  & 
 \begin{tabular}{p{1.5cm}l}
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Date:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@toetsdatum}} \\
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Time:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@tijd}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Date:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@toetsdatum}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Time:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@tijd}} \\
 \end{tabular}  
 \\ \hline 
 \begin{tabular}{p{2cm}l}
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Group:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@groep}} \\
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Module:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@module}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Group:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@groep}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Module:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@module}} \\
 \end{tabular}  & 
 \begin{tabular}{p{3.2cm}l}
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Number of pages:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@aantalbladzijden {} (including this page)}} \\
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Number of questions:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@aantalvragen}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Number of pages:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@aantalbladzijden {} (including this page)}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Number of questions:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@aantalvragen}} \\
 \end{tabular}  
 \\ \hline 
 
@@ -360,7 +345,7 @@
 \tisdexam@vspacecorrection
 \vspace*{-0.5cm}
 \begin{table}[!ht]
-\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont
+\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont
 \centering
 \begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
 \textbf{With this exam you will receive}: & \\
@@ -375,7 +360,7 @@
 \tisdexam@vspacecorrection
 \vspace*{-0.5cm}
 \begin{table}[!ht]
-\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont
+\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont
 \centering
 \begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
 \multicolumn{2}{l}{\textbf{Allowed tools}:}  \\
@@ -389,7 +374,7 @@
 \tisdexam@vspacecorrection
 \vspace*{-0.5cm}
 \begin{table}[!ht]
-\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont
+\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont
 \centering
 \begin{tabular}{p{0.925\textwidth}}
 \textbf{Attention}: \\
@@ -402,7 +387,7 @@
 \tisdexam@vspacecorrection
 \vspace*{-0.5cm}
 \begin{table}[!ht]
-\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont
+\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont
 \centering
 \begin{tabular}{p{0.925\textwidth}}
 \textbf{To be handed in}: \\
@@ -414,7 +399,7 @@
 \tisdexam@vspacecorrection
 \vspace*{-0.5cm}
 \begin{table}[!ht]
-\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont\slshape
+\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont\slshape
 \centering
 \begin{tabular}{p{0.925\textwidth}}
 \underline{Important:} \\
@@ -435,13 +420,13 @@ Write your name and studentnumber on all documents. \\
 \newcommand{\makecoverpage}{%
 \tisdexam@hspacecorrection\begin{minipage}[c]{0.48\textwidth}
 \vspace*{0.4cm}
-{\fontfamily{phv}\fontsize{16pt}{20pt}\selectfont Toetsvoorblad}
+{\usefont{T1}{phv}{m}{n}\fontsize{16pt}{20pt}\selectfont Toetsvoorblad}
 
 \vspace*{0.55cm}
-{\fontfamily{phv}\fontsize{11pt}{12pt}\selectfont Naam Student:\quad \line(1,0){120}}
+{\usefont{T1}{phv}{m}{n}\fontsize{11pt}{12pt}\selectfont Naam Student:\quad \line(1,0){120}}
 
 \vspace*{0.55cm}
-{\fontfamily{phv}\fontsize{11pt}{12pt}\selectfont Studentnummer: \quad \line(1,0){120}}
+{\usefont{T1}{phv}{m}{n}\fontsize{11pt}{12pt}\selectfont Studentnummer: \quad \line(1,0){120}}
 \end{minipage}
 \begin{minipage}[c]{0.48\textwidth}
 {\setlength{\unitlength}{0.125pt}%
@@ -452,37 +437,37 @@ Write your name and studentnumber on all documents. \\
 
 
 \vspace*{0.10cm}
-{\hspace*{4.1cm}\fontfamily{phv}\fontsize{10pt}{11pt}\selectfont Locatie: \textbf{\textcolor{SkyBlue}{\tisdexam@locatie}}}
+{\hspace*{4.1cm}\usefont{T1}{phv}{m}{n}\fontsize{10pt}{11pt}\selectfont Locatie: \textbf{\textcolor{SkyBlue}{\tisdexam@locatie}}}
 \end{minipage}
 
 \begin{table}[ht]
 \centering
 \begin{tabular}{|p{0.45\textwidth}|p{0.45\textwidth}|}
 \hline\vspace*{0.00cm}%
-{\fontfamily{phv}\fontsize{14pt}{18pt}\selectfont\bfseries Opleiding:
+{\usefont{T1}{phv}{m}{n}\fontsize{14pt}{18pt}\selectfont\bfseries Opleiding:
 
 \vspace*{7pt}
 \textcolor{black}{\tisdexam@opleiding}} \vspace*{0.1cm}& \vspace*{0.00cm}%
-{\fontfamily{phv}\fontsize{14pt}{18pt}\selectfont\bfseries Toetsnaam:
+{\usefont{T1}{phv}{m}{n}\fontsize{14pt}{18pt}\selectfont\bfseries Toetsnaam:
 
 \vspace*{7pt}
 \textcolor{black}{\tisdexam@toetsnaam}}\\ \hline
 \begin{tabular}{p{2cm}l}
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Opsteller:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@opsteller}} \\
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Tweede lezer:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@tweedelezer}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Opsteller:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@opsteller}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Tweede lezer:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@tweedelezer}} \\
 \end{tabular}  & 
 \begin{tabular}{p{1.5cm}l}
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Datum:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@toetsdatum}} \\
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Tijd:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@tijd}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Datum:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@toetsdatum}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Tijd:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@tijd}} \\
 \end{tabular}  
 \\ \hline 
 \begin{tabular}{p{2cm}l}
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Groep:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@groep}} \\
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Module:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@module}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Groep:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@groep}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Module:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@module}} \\
 \end{tabular}  & 
 \begin{tabular}{p{2.8cm}l}
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Aantal bladzijden:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@aantalbladzijden {} (inclusief voorblad)}} \\
-\hspace*{-0.5\columnsep}{\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont Aantal vragen:} & {\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@aantalvragen}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Aantal bladzijden:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@aantalbladzijden {} (inclusief voorblad)}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Aantal vragen:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@aantalvragen}} \\
 \end{tabular}  
 \\ \hline 
 
@@ -492,7 +477,7 @@ Write your name and studentnumber on all documents. \\
 \tisdexam@vspacecorrection
 \vspace*{-0.5cm}
 \begin{table}[!ht]
-\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont
+\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont
 \centering
 \begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
 \textbf{Bij deze toets worden verstrekt}: & \\
@@ -508,7 +493,7 @@ Write your name and studentnumber on all documents. \\
 \tisdexam@vspacecorrection
 \vspace*{-0.5cm}
 \begin{table}[!ht]
-\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont
+\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont
 \centering
 \begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
 \multicolumn{2}{l}{\textbf{Toegestane eigen hulpmiddelen bij het maken van deze toets}:}  \\
@@ -522,7 +507,7 @@ Write your name and studentnumber on all documents. \\
 \tisdexam@vspacecorrection
 \vspace*{-0.5cm}
 \begin{table}[!ht]
-\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont
+\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont
 \centering
 \begin{tabular}{p{0.925\textwidth}}
 \textbf{Opmerkingen}: \\
@@ -535,7 +520,7 @@ Write your name and studentnumber on all documents. \\
 \tisdexam@vspacecorrection
 \vspace*{-0.5cm}
 \begin{table}[!ht]
-\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont
+\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont
 \centering
 \begin{tabular}{p{0.925\textwidth}}
 \textbf{In te leveren door student bij surveillant}: \\
@@ -547,7 +532,7 @@ Write your name and studentnumber on all documents. \\
 \tisdexam@vspacecorrection
 \vspace*{-0.5cm}
 \begin{table}[!ht]
-\fontfamily{phv}\fontsize{10pt}{14pt}\selectfont\slshape
+\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont\slshape
 \centering
 \begin{tabular}{p{0.925\textwidth}}
 \underline{Belangrijk:} \\
