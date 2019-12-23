@@ -1,11 +1,4 @@
 ---
-With using \pdfcompresslevel=0 for PDFTeX or with \pdfvariable compresslevel for LuaTeX
-I'll get the pdf with no compressed streams and can see what happens inside the pdf.
----
-
-\ifluatex \ifxetex
-
----
 
 Aanpassen: \usepackage{geometry} uitstellen tot \AtBeginDocument
 

@@ -4,7 +4,7 @@
 %%
 %%   (c)2019, J.E.J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
-%%   v2.0d -- 2019/02/16
+%%   v2.0e -- 2019/12/12
 %%
 %%   
 %%
@@ -34,7 +34,7 @@
 \cesuur{cijfer = (aantal behaalde punten/10) + 1}
 \opsteller{J.E.J. op den Brouw}
 \tweedelezer{J.Z.M. Broeders}
-\module{}
+\cursuscode{E-INLDIG-th1}
 \locatie{Delft}
 
 \gelinieerdpapiertrue
@@ -123,8 +123,8 @@
   breaklines=true,
   breakatwhitespace=false,
   title=\lstname,
-  morekeywords={RequirePackage,ProvidesPackage},
-  aboveskip=0pt,
+  moretexcs={setlength},
+  aboveskip=15pt,
   belowskip=-10pt
 }
 
@@ -161,7 +161,7 @@
 \label{sec:abstract}
 De \DocClass{tisdexam} document class kan gebruikt worden om toetsen voor
 de Faculteit TIS op te maken volgens een vast format. De \DocClass{tisdexam}
-kan gebruikt worden met \LaTeX, lua\LaTeX en Xe\LaTeX.
+kan gebruikt worden met \LaTeX, lua\LaTeX\ en Xe\LaTeX.
 
 \medskip
 De class heeft een aantal opties en een aantal \textsl{commando's} (ook wel
@@ -284,7 +284,7 @@ ge\"{\i}mplementeerd. Als toetsvoorblad wordt de Engelse variant gebruikt.
 \label{sec:commands}
 
 De \DocClass{tisdexam} class kent een groot aantal commando's waarvan de meeste
-betrekking hebben op het voorblad.  Het voorblad kan gezien worden als onderverdeerd
+betrekking hebben op het voorblad.  Het voorblad kan gezien worden als onderverdeeld
 in drie secties die elkaar niet logischerwijze opvolgen. De eerste sectie geeft de
 algemene informatie over de toets, zoals
 toetsnaam en opsteller. De commando's zijn hieronder te vinden.
@@ -301,7 +301,7 @@ toetsnaam en opsteller. De commando's zijn hieronder te vinden.
 \verb|\toetsdatumkort| & Korte notatie van de toetsdatum in dd-mm-jjjj \\
 \verb|\tijd|       & De tijdvak waarin de toets gegeven wordt, begin- en eindtijd \\
 \verb|\groep|     & De groep of groepen waarvoor de toets bedoeld is \\ 
-\verb|\module|    & De module van het vak. \textsl{Wordt bij TIS niet gebruikt.}\\
+\verb|\cursuscode|    & De cursuscode van het vak. \\
 \verb|\aantalbladzijden| & Het aantal pagina's waaruit de toets bestaat, inclusief het voorblad \\
 \verb|\aantalvragen| & Het aantal opgaven waaruit de toets bestaat \\
 \verb|\opmerkingen| & Een vrij veld waar allerlei opmerkingen kunnen worden geplaatst \\
@@ -408,6 +408,7 @@ Het commando \verb|\makecoverpage| genereert het verplichte toetsvoorblad.
 Een voorbeeld is te vinden op pagina~\pageref{pag:coverpage}. Bij het vormgeven
 van het toetsvoorblad zijn onderstaande commando's gebruikt.
 
+\newpage
 \begin{lstlisting}
 \opleiding{Elektrotechniek}
 \toetsnaam{INLDIG}
@@ -420,7 +421,7 @@ van het toetsvoorblad zijn onderstaande commando's gebruikt.
 \cesuur{cijfer = (aantal behaalde punten/10) + 1}
 \opsteller{J.E.J. op den Brouw}
 \tweedelezer{J.Z.M. Broeders}
-\module{}
+\cursuscode{E-INLDIG-th1}
 \locatie{Delft}
 
 \gelinieerdpapiertrue
@@ -502,7 +503,6 @@ Het commando \verb|\qformat| is opnieuw gedefinieerd als
 \qformat{\textbf{\tisdexam@opgavespel{} \thequestion{}} (\totalpoints
          \@pointname) \hfill}
 \end{lstlisting}
-
 
 
 \section{Verwijderde environments}
@@ -619,7 +619,7 @@ lengte \verb|\questionsep| aangepast worden.
 
 \medskip
 De \verb|geometry| package wordt geladen en de linker en rechter marge worden
-ingesteld op op 0,9 inch. De pagina-layout kan opnieuw worden ingesteld
+ingesteld op 2~cm. De pagina-layout kan opnieuw worden ingesteld
 d.m.v.\@ het commando \verb|\newgeometry|.
 
 \begin{lstlisting}
@@ -775,6 +775,8 @@ Het goede antwoord op vraag \ref{opg:opg3} is \ref{ans:opg3}.
 %\setlength{\parindent}{\myparindent}
 
 \thispagestyle{empty}
+%\newgeometry{bindingoffset=0.0in,left=2cm,right=2cm,top=1in,bottom=1in,footskip=.40in}
+
 \makecoverpage
 
 

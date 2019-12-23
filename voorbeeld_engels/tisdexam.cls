@@ -14,7 +14,9 @@
 %%         2.0c -- changed head/foot to reflect double sided printing
 %%         2.0d -- Changed font changing code for cover page to \usefont{T1}{phv}{m}{n},
 %%                 supported by Lua and Xe. removed PTEX banner removal, 10 pt now
-%%                 really uses 10 pt. 
+%%                 really uses 10 pt.
+%%         2.0e -- Changed text in Dutch version of cover sheet, command \module is
+%%                 changed to \cursuscode
 %% 
 %% Class options:
 %%  dutch - load dutch spelling options
@@ -46,7 +48,7 @@
 %%  \opsteller - author/composer/redactor, mostly the lecturer
 %%  \tweedelezer - second reader/coauthor/proof reader
 %%  \cesuur - caesura of the exam
-%%  \module - module name of the exam
+%%  \cursuscode - code of the course
 
 %%  \overig - accompanying text to \overigtrue
 %%  \bijlagen - accompanying text to \bijlagetrue
@@ -107,8 +109,8 @@
 %%  xcolor, babel, geometry
 
 %% Credentials
-\def\fileversion{2.0d}
-\def\filedate{2019/02/16}
+\def\fileversion{2.0e}
+\def\filedate{2019/12/23}
 \edef\tisdexamfileversion{\fileversion}
 \edef\tisdexamfiledate{\filedate}
 
@@ -211,7 +213,7 @@
 \newcommand{\opsteller}[1]{\def\tisdexam@opsteller{#1}}
 \newcommand{\tweedelezer}[1]{\def\tisdexam@tweedelezer{#1}}
 \newcommand{\cesuur}[1]{\def\tisdexam@cesuur{#1}}
-\newcommand{\module}[1]{\def\tisdexam@module{#1}}
+\newcommand{\cursuscode}[1]{\def\tisdexam@cursuscode{#1}}
 \newcommand{\locatie}[1]{\def\tisdexam@locatie{#1}}
 \newcommand{\overig}[1]{\def\tisdexam@overig{#1}}
 \newcommand{\bijlagen}[1]{\def\tisdexam@bijlagen{#1}}
@@ -239,7 +241,7 @@
 %\fi
 \def\tisdexam@opmerkingen{\hspace{\stretch{1}}\rule{\linewidth}{0.1pt}\hspace{\stretch{1}}\newline\hspace{\stretch{1}}\rule{\linewidth}{0.1pt}\hspace{\stretch{1}}}
 \def\tisdexam@cesuur{\hspace{\stretch{1}}\rule{\linewidth}{0.1pt}\hspace{\stretch{1}}\newline\hspace{\stretch{1}}\rule{\linewidth}{0.1pt}\hspace{\stretch{1}}}
-\def\tisdexam@module{\textbf{??}}
+\def\tisdexam@cursuscode{\textbf{??}}
 \def\tisdexam@locatie{Delft}
 \def\tisdexam@overig{\line(1,0){40}}
 \def\tisdexam@bijlagen{\line(1,0){40}}
@@ -331,7 +333,7 @@
 \\ \hline 
 \begin{tabular}{p{2cm}l}
 \hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Group:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@groep}} \\
-\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Module:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@module}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Coursecode:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@cursuscode}} \\
 \end{tabular}  & 
 \begin{tabular}{p{3.2cm}l}
 \hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Number of pages:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@aantalbladzijden {} (including this page)}} \\
@@ -405,7 +407,7 @@
 \underline{Important:} \\
 For this exam, the rules of the Programme and Examination regulations apply. This document is \\
 present in the exam room. \\
-This exam is printed \textcolor{black}{double sided}; \\
+This exam is printed \textcolor{SkyBlue}{double sided}; \\
 Write your name and studentnumber on all documents. \\
 \end{tabular}
 \end{table}
@@ -463,7 +465,7 @@ Write your name and studentnumber on all documents. \\
 \\ \hline 
 \begin{tabular}{p{2cm}l}
 \hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Groep:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@groep}} \\
-\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Module:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@module}} \\
+\hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Cursuscode:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@cursuscode}} \\
 \end{tabular}  & 
 \begin{tabular}{p{2.8cm}l}
 \hspace*{-0.5\columnsep}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont Aantal bladzijden:} & {\usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont \textcolor{black}{\tisdexam@aantalbladzijden {} (inclusief voorblad)}} \\
@@ -523,7 +525,7 @@ Write your name and studentnumber on all documents. \\
 \usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont
 \centering
 \begin{tabular}{p{0.925\textwidth}}
-\textbf{In te leveren door student bij surveillant}: \\
+\textbf{In te leveren door surveillant bij het faculteitsbureau}: \\
 \ifdocumentengesorteerddocument $\boxtimes$ \else $\square$ \fi Alle documenten voorzien van naam en studentnummer, per document gesorteerd \\
 \ifdocumentengesorteerdstudent $\boxtimes$ \else $\square$ \fi Alle documenten voorzien van naam en studentnummer, per student gesorteerd (in omslag)
 \end{tabular}
@@ -536,7 +538,7 @@ Write your name and studentnumber on all documents. \\
 \centering
 \begin{tabular}{p{0.925\textwidth}}
 \underline{Belangrijk:} \\
-Voor dit tentamen gelden de regels uit de toetsregeling van het Onderwijs- en Examenreglement. Dit document is aanwezig in het toetslokaal; \\
+Voor dit tentamen gelden de regels uit de toetsregeling van De Onderwijs- en Examenregeling. Dit document is aanwezig in het toetslokaal; \\
 Je dient zelf te controleren of je alle pagina's en vragen van dit tentamen hebt ontvangen; \\
 Dit tentamen is \textcolor{black}{dubbelzijdig} geprint; \\
 Schrijf je naam en studentnummer op alle documenten.

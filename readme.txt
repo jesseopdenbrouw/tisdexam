@@ -29,5 +29,11 @@ Nieuw in versie 2.0d
 * class is Lualatex en Xelatex aware (Rufus)
 * Diverse gecommentarieerde code verwijderd.
 
+Nieuw in versie 2.0e
+--------------------
+* Het command \module is verwijderd.
+* Het commando \cursuscode is toegevoegd.
+* Op het Nederlandse voorblad is "module" gewijzigd in "cursuscode"
 
-Jesse, 16-feb-2019
+
+Jesse, 23-dec-2019
