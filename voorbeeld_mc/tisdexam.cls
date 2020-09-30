@@ -5,7 +5,7 @@
 %% Exam document class for creating exams at Academy of Technology, Innovation
 %% and Society - Delft (TISD) of the The Hague University of Applied Sciences.
 %%
-%% (c)2019, J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
+%% (c)2020, J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
 %% Version 2.0  -- initial release
 %%         2.0a -- changed some colour from SkyBlue to black as printed on the
@@ -17,7 +17,9 @@
 %%                 really uses 10 pt.
 %%         2.0e -- Changed text in Dutch version of cover sheet, command \module is
 %%                 changed to \cursuscode
-%% 
+%%         2.0f -- subtle change to the cover page
+%%
+%%
 %% Class options:
 %%  dutch - load dutch spelling options
 %%  nederlands - alternative to dutch
@@ -109,8 +111,8 @@
 %%  xcolor, babel, geometry
 
 %% Credentials
-\def\fileversion{2.0e}
-\def\filedate{2019/12/23}
+\def\fileversion{2.0f}
+\def\filedate{2020/09/30}
 \edef\tisdexamfileversion{\fileversion}
 \edef\tisdexamfiledate{\filedate}
 
@@ -525,7 +527,7 @@ Write your name and studentnumber on all documents. \\
 \usefont{T1}{phv}{m}{n}\fontsize{10pt}{14pt}\selectfont
 \centering
 \begin{tabular}{p{0.925\textwidth}}
-\textbf{In te leveren door surveillant bij het faculteitsbureau}: \\
+\textbf{In te leveren door student bij surveillant}: \\
 \ifdocumentengesorteerddocument $\boxtimes$ \else $\square$ \fi Alle documenten voorzien van naam en studentnummer, per document gesorteerd \\
 \ifdocumentengesorteerdstudent $\boxtimes$ \else $\square$ \fi Alle documenten voorzien van naam en studentnummer, per student gesorteerd (in omslag)
 \end{tabular}

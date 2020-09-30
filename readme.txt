@@ -3,13 +3,13 @@
 DOCUMENT CLASS tisdexam
 =======================
 
-versie: 2.0d
-datum:  16-feb-2019
+versie: 2.0f
+datum:  20-sep-2020
 
 
 -----------------------
 Dit is de nieuwe document class tisdexam die geschikt is voor de
-toetsvoorbladen vanaf het schooljaar 2018-2019.
+toetsvoorbladen vanaf het schooljaar 2020-2021.
 
 Zowel de nederlandse als de engelse toetsvoorbladen zijn geimplementeerd.
 
@@ -21,13 +21,11 @@ omdat de logo's van TIS erg veel ruimte innemem.
 LEES VOORAL DE DOCUMENTATIE.
 
 
-Deze document class is getest met TeXlive 2018 en TexStudio 2.12.14
+Deze document class is getest met TeXlive 2020 en TexStudio 3.0.1
 
-Nieuw in versie 2.0d
---------------------
-* 10 pt is nu ook echt 10 pt
-* class is Lualatex en Xelatex aware (Rufus)
-* Diverse gecommentarieerde code verwijderd.
+Nieuw in versie 2.0f
+* Op het voorblad staat nu weer "In te leveren door student bij surveillant:"
+
 
 Nieuw in versie 2.0e
 --------------------
@@ -36,4 +34,11 @@ Nieuw in versie 2.0e
 * Op het Nederlandse voorblad is "module" gewijzigd in "cursuscode"
 
 
-Jesse, 23-dec-2019
+Nieuw in versie 2.0d
+--------------------
+* 10 pt is nu ook echt 10 pt
+* class is Lualatex en Xelatex aware (Rufus)
+* Diverse gecommentarieerde code verwijderd.
+
+
+Jesse, 30-sep-2020
