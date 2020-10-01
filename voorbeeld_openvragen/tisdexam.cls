@@ -18,6 +18,7 @@
 %%         2.0e -- Changed text in Dutch version of cover sheet, command \module is
 %%                 changed to \cursuscode
 %%         2.0f -- subtle change to the cover page
+%%         2.0g -- subtle change to the cover page
 %%
 %%
 %% Class options:
@@ -111,8 +112,8 @@
 %%  xcolor, babel, geometry
 
 %% Credentials
-\def\fileversion{2.0f}
-\def\filedate{2020/09/30}
+\def\fileversion{2.0g}
+\def\filedate{2020/10/01}
 \edef\tisdexamfileversion{\fileversion}
 \edef\tisdexamfiledate{\filedate}
 
@@ -540,7 +541,7 @@ Write your name and studentnumber on all documents. \\
 \centering
 \begin{tabular}{p{0.925\textwidth}}
 \underline{Belangrijk:} \\
-Voor dit tentamen gelden de regels uit de toetsregeling van De Onderwijs- en Examenregeling. Dit document is aanwezig in het toetslokaal; \\
+Voor dit tentamen gelden de regels uit de toetsregeling van het Onderwijs- en Examenreglement. Dit document is aanwezig in het toetslokaal; \\
 Je dient zelf te controleren of je alle pagina's en vragen van dit tentamen hebt ontvangen; \\
 Dit tentamen is \textcolor{black}{dubbelzijdig} geprint; \\
 Schrijf je naam en studentnummer op alle documenten.

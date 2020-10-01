@@ -3,8 +3,8 @@
 DOCUMENT CLASS tisdexam
 =======================
 
-versie: 2.0f
-datum:  20-sep-2020
+versie: 2.0g
+datum:  01-oct-2020
 
 
 -----------------------
@@ -23,7 +23,13 @@ LEES VOORAL DE DOCUMENTATIE.
 
 Deze document class is getest met TeXlive 2020 en TexStudio 3.0.1
 
+Nieuw in versie 2.0g
+--------------------
+* Er staat weer "Voor dit tentamen gelden de regels uit de toetsregeling van het Onderwijs- en Examenreglement."
+  op het voorblad.
+
 Nieuw in versie 2.0f
+--------------------
 * Op het voorblad staat nu weer "In te leveren door student bij surveillant:"
 
 
@@ -41,4 +47,4 @@ Nieuw in versie 2.0d
 * Diverse gecommentarieerde code verwijderd.
 
 
-Jesse, 30-sep-2020
+Jesse, 01-oct-2020
