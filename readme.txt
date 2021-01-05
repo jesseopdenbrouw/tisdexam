@@ -3,8 +3,8 @@
 DOCUMENT CLASS tisdexam
 =======================
 
-versie: 2.0g
-datum:  01-oct-2020
+versie: 2.0h
+datum:  04-jan-2021
 
 
 -----------------------
@@ -22,6 +22,10 @@ LEES VOORAL DE DOCUMENTATIE.
 
 
 Deze document class is getest met TeXlive 2020 en TexStudio 3.0.1
+
+Nieuw in versie 2.0h
+--------------------
+* De optie (aankruisvakje) 'Tekenbenodigheden' is verwijderd.
 
 Nieuw in versie 2.0g
 --------------------
@@ -47,4 +51,4 @@ Nieuw in versie 2.0d
 * Diverse gecommentarieerde code verwijderd.
 
 
-Jesse, 01-oct-2020
+Jesse, 04-jan-2021

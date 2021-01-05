@@ -5,7 +5,7 @@
 %% Exam document class for creating exams at Academy of Technology, Innovation
 %% and Society - Delft (TISD) of the The Hague University of Applied Sciences.
 %%
-%% (c)2020, J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
+%% (c)2021, J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
 %% Version 2.0  -- initial release
 %%         2.0a -- changed some colour from SkyBlue to black as printed on the
@@ -19,6 +19,7 @@
 %%                 changed to \cursuscode
 %%         2.0f -- subtle change to the cover page
 %%         2.0g -- subtle change to the cover page
+%%         2.0h -- \tekenbenodigdheden is removed
 %%
 %%
 %% Class options:
@@ -112,8 +113,8 @@
 %%  xcolor, babel, geometry
 
 %% Credentials
-\def\fileversion{2.0g}
-\def\filedate{2020/10/01}
+\def\fileversion{2.0h}
+\def\filedate{2021/01/04}
 \edef\tisdexamfileversion{\fileversion}
 \edef\tisdexamfiledate{\filedate}
 
@@ -369,9 +370,9 @@
 \centering
 \begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
 \multicolumn{2}{l}{\textbf{Allowed tools}:}  \\
-\ifeenvoudigerekenmachine $\boxtimes$ \else $\square$ \fi Simple calculator & \iftekenbenodigdheden $\boxtimes$ \else $\square$ \fi Drawing tools (ruler, pencil) \\
-\ifgrafischerekenmachine $\boxtimes$ \else $\square$ \fi Graphic/programmable calculator & \ifeigenaantekeningen $\boxtimes$ \else $\square$ \fi Hand written notes: \tisdexam@eigenaantekeningen \\
-\ifcomputer $\boxtimes$ \else $\square$ \fi Computer & \ifboekendictaten $\boxtimes$ \else $\square$ \fi Books/readers: \tisdexam@boekendictaten \\
+\ifeenvoudigerekenmachine $\boxtimes$ \else $\square$ \fi Simple calculator & \ifeigenaantekeningen $\boxtimes$ \else $\square$ \fi Hand written notes: \tisdexam@eigenaantekeningen \\
+\ifgrafischerekenmachine $\boxtimes$ \else $\square$ \fi Graphic/programmable calculator & \ifboekendictaten $\boxtimes$ \else $\square$ \fi Books/readers: \tisdexam@boekendictaten \\
+\ifcomputer $\boxtimes$ \else $\square$ \fi Computer &  \\
 \ifformulebladen $\boxtimes$ \else $\square$ \fi Formula sheet(s): \tisdexam@formulebladen & \\
 \end{tabular}
 \end{table}
@@ -502,9 +503,9 @@ Write your name and studentnumber on all documents. \\
 \centering
 \begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
 \multicolumn{2}{l}{\textbf{Toegestane eigen hulpmiddelen bij het maken van deze toets}:}  \\
-\ifeenvoudigerekenmachine $\boxtimes$ \else $\square$ \fi Eenvoudige rekenmachine & \iftekenbenodigdheden $\boxtimes$ \else $\square$ \fi Tekenbenodigdheden (liniaal, passer) \\
-\ifgrafischerekenmachine $\boxtimes$ \else $\square$ \fi Grafische rekenmachine & \ifeigenaantekeningen $\boxtimes$ \else $\square$ \fi Eigen aantekeningen: \tisdexam@eigenaantekeningen \\
-\ifcomputer $\boxtimes$ \else $\square$ \fi Computer & \ifboekendictaten $\boxtimes$ \else $\square$ \fi Boeken/dictaten: \tisdexam@boekendictaten \\
+\ifeenvoudigerekenmachine $\boxtimes$ \else $\square$ \fi Eenvoudige rekenmachine & \ifeigenaantekeningen $\boxtimes$ \else $\square$ \fi Eigen aantekeningen: \tisdexam@eigenaantekeningen \\
+\ifgrafischerekenmachine $\boxtimes$ \else $\square$ \fi Grafische rekenmachine & \ifboekendictaten $\boxtimes$ \else $\square$ \fi Boeken/dictaten: \tisdexam@boekendictaten \\
+\ifcomputer $\boxtimes$ \else $\square$ \fi Computer &  \\
 \ifformulebladen $\boxtimes$ \else $\square$ \fi Formuleblad(en): \tisdexam@formulebladen & \\
 \end{tabular}
 \end{table}
