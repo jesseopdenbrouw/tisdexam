@@ -21,7 +21,11 @@ omdat de logo's van TIS erg veel ruimte innemem.
 LEES VOORAL DE DOCUMENTATIE.
 
 
-Deze document class is getest met TeXlive 2020 en TexStudio 3.0.1
+Deze document class is getest met TeXlive 2022 en TexStudio 4.2.2
+
+Nieuw in versie 2.0i
+--------------------
+* nameref wordt eerder geladen om een probleem met \AtBeginDocument te omzeilen.
 
 Nieuw in versie 2.0h
 --------------------
