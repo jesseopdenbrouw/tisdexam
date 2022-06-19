@@ -5,7 +5,7 @@
 %% Exam document class for creating exams at Academy of Technology, Innovation
 %% and Society - Delft (TISD) of the The Hague University of Applied Sciences.
 %%
-%% (c)2021, J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
+%% (c)2022, J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
 %% Version 2.0  -- initial release
 %%         2.0a -- changed some colour from SkyBlue to black as printed on the
@@ -20,6 +20,7 @@
 %%         2.0f -- subtle change to the cover page
 %%         2.0g -- subtle change to the cover page
 %%         2.0h -- \tekenbenodigdheden is removed
+%%         2.0i -- load `nameref` earlier to evade AtBeginDocument error
 %%
 %%
 %% Class options:
@@ -113,8 +114,8 @@
 %%  xcolor, babel, geometry
 
 %% Credentials
-\def\fileversion{2.0h}
-\def\filedate{2021/01/04}
+\def\fileversion{2.0i}
+\def\filedate{2022/06/19}
 \edef\tisdexamfileversion{\fileversion}
 \edef\tisdexamfiledate{\filedate}
 
@@ -285,6 +286,31 @@
 %%\fi
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{amssymb}
+\RequirePackage{nameref}
+
+%% Do all these things at the beginning of the document. This gives
+%% some packages the possibility to be loaded before some other packages.
+%% Check if document is typed vanilla.
+\AtBeginDocument{%
+\ifprintanswers\ClassWarning{tisdexam}{Document is rendered with answers}\fi
+\ifvanilla
+\else
+\iftisdexam@hyperrefsetupis
+\else
+\setuphyperrefheaderfooter
+\ClassWarning{tisdexam}{Package hyperref and header and footers automatically set up at begin of document}
+\fi
+\fi
+%% Check if parskip is loaded, parskip messes up the coverpage layout
+\@ifpackageloaded{parskip}{%
+\ClassWarning{tisdexam}{Package parskip detected. Please view the coverpage for correct rendering}
+\gdef\tisdexam@vspacecorrection{\vspace*{0.5\baselineskip}}%
+\gdef\tisdexam@hspacecorrection{\hspace*{0.55cm}}%
+}{%
+\gdef\tisdexam@vspacecorrection{}%
+\gdef\tisdexam@hspacecorrection{}%
+}%
+}
 
 %%
 %% Begin coverpage
@@ -744,29 +770,6 @@ Schrijf je naam en studentnummer op alle documenten.
 \setlength{\tisdexam@oldparindent}{\parindent}
 \newlength{\tisdexam@parindent}
 
-%% Do all these things at the beginning of the document. This gives
-%% some packages the possibility to be loaded before some other packages.
-%% Check if document is typed vanilla.
-\AtBeginDocument{%
-\ifprintanswers\ClassWarning{tisdexam}{Document is rendered with answers}\fi
-\ifvanilla
-\else
-\iftisdexam@hyperrefsetupis
-\else
-\setuphyperrefheaderfooter
-\ClassWarning{tisdexam}{Package hyperref and header and footers automatically set up at begin of document}
-\fi
-\fi
-%% Check if parskip is loaded, parskip messes up the coverpage layout
-\@ifpackageloaded{parskip}{%
-\ClassWarning{tisdexam}{Package parskip detected. Please view the coverpage for correct rendering}
-\gdef\tisdexam@vspacecorrection{\vspace*{0.5\baselineskip}}%
-\gdef\tisdexam@hspacecorrection{\hspace*{0.55cm}}%
-}{%
-\gdef\tisdexam@vspacecorrection{}%
-\gdef\tisdexam@hspacecorrection{}%
-}%
-}
 
 \endinput
 %%
