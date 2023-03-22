@@ -3,7 +3,7 @@
 DOCUMENT CLASS tisdexam
 =======================
 
-versie: 2.0h
+versie: 2.0i
 datum:  04-jan-2021
 
 
