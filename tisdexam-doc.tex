@@ -2,55 +2,73 @@
 %%
 %%   tisdexam.tex - documentation for the tisdexam document class
 %%
-%%   (c)2021, J.E.J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
+%%   (c)2023, J.E.J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
-%%   v2.0h -- 2021/04/01
+%%   v3.0\alpha -- 2023/12/01
 %%
 %%   
 %%
 
 
 %% The document class is TISD Exam...
-%\documentclass[12pt,dutch,dyslect,answers,addpoints,fleqn]{tisdexam}
-%\documentclass[12pt,dutch,answers,addpoints,fleqn]{tisdexam}
-%\documentclass[dutch,a4paper,12pt,answers,addpoints,fleqn]{tisdexam}
-\documentclass[dutch,a4paper,12pt,addpoints,fleqn,oneside]{tisdexam}
-%\documentclass[12pt,dutch,addpoints,fleqn]{tisdexam}
+\documentclass[12pt,dutch,addpoints,fleqn]{tisdexam}
 
-%% Don't create the hyperref meuk...
-\makeatletter
-\tisdexam@hyperrefsetupistrue
-\makeatother
+\newgeometry{left=2.0cm,right=2.0cm,top=2.0cm,bottom=1.4in}
 
 %% The info for the cover sheet needs to be set up before the beginning of document
-\opleiding{Elektrotechniek}
-\toetsnaam{INLDIG}
-\toetsnaamkort{INLDIG}
-\groep{EP11, EP12}
-\toetsdatum{donderdag 30 januari 2014}
-	\toetsdatumkort{30-01-2014}
-\tijd{13:00 -- 14:30 uur}
-\opmerkingen{Bij elke opgave staat het maximum aantal te behalen punten genoteerd, in totaal is maximaal \numpoints{} punten te behalen.}
-\cesuur{cijfer = (aantal behaalde punten/10) + 1}
-\opsteller{J.E.J. op den Brouw}
-\tweedelezer{J.Z.M. Broeders}
-\cursuscode{E-INLDIG-th1}
-\locatie{Delft}
+%% Exam credentials
+\opsteller{Jesse op den Brouw}
+\opleiding{Elektro}
+\toetsnaam{DIGTEC}
+\toetsnaamkort{DIGTEC}
+\toetscode{E-DIGTEC-th1}
 
-\gelinieerdpapiertrue
+%% Checkboxes
+\voltijdtrue
+\deeltijdtrue
+\duaaltrue
+
+%% More exam credentials
+\toetsdatum{24 november 2023}
+\toetsdatumkort{24-11-2023}
+\begintijd{8:45}
+\eindtijd{9:30}
+\tijdsduur{45}
+
+%% Automatic calculated if not used
+%\aantalpaginas{}
+%\aantalopenvragen{}
+%\aantalgeslotenvragen{}
+
+%% Even mor credentials
+\cesuur{45}
+\puntenverdeling{1 punt voor elke vraag}
+
+%% More checkboxes
+\toetspapiertrue
+\antwoordenbladentrue
+\antwoordenbladenabcdetrue
+\ruitjespapiertrue
 \kladpapiertrue
+\tekenbenodigdhedentrue
+\eenvoudigerekenmachinetrue
 \grafischerekenmachinetrue
 \formulebladentrue
-\formulebladen{Boekje Aad Sluyter}
+\wetbundeltrue
+\aantekeningentrue
+\boektrue
+\overigtrue
+\geenhulpmiddelentrue
 
-\documentengesorteerddocumenttrue
+%% For use with \overigtrue
+\overig{Regeltje tekst}
+
+%% Cooments/remarks
+\opmerkingen{Je kunt in dit vakje opmerkingen plaatsen. Als het goed is wordt alles automatisch getypeset.}
 
 
 
 
-
-\usepackage[T1]{fontenc}
-\usepackage[latin1]{inputenc}
 
 %\usepackage{showframe}
 
@@ -86,15 +104,6 @@
 %\usepackage[dutch]{babel}
 
 % Use hyperrefs in PDFs
-\usepackage{hyperref}
-\hypersetup{
-  colorlinks=true,
-  linkcolor=blue,
-  pdftitle={TISD Exam Document Class},
-  pdfauthor={J.E.J op den Brouw},
-  pdfsubject={Toetsen maken in LaTeX met de TISD Exam Document Class},
-  pdfkeywords={Latex, Document Class, TISD, Toets}
-}
 \definecolor{red}{rgb}{1,0,0}
 \definecolor{blue}{rgb}{0,0,1}
 \definecolor{darkgreen}{rgb}{0,0.4,0}
@@ -151,7 +160,7 @@
 \raggedbottom
 \title{De \DocClass{tisdexam} document class}
 \author{Jesse op den Brouw\thanks{De Haagse Hogeschool,
-        \url{J.E.J.opdenBrouw@hhs.nl}}}
+        {J.E.J.opdenBrouw@hhs.nl}}}
 \date{\tisdexamfiledate, versie \tisdexamfileversion}
 \maketitle
 \setcounter{footnote}{1}
@@ -201,67 +210,20 @@ onderstaand opgesomd:
 
 \Option{american} -- gebruik amerikaanse spelling en toetsvoorblad
 
-\Option{dyslect} -- typeer het document als dyslect
-
-\Option{concept} -- typeer het document als concept
-
 \Option{vanilla} -- typeer het document als 'vanilla'
 
-\Option{mimicwordtwentyten} -- bootst een uitvoer na alsof deze uit Word 2010 komt
-
-\Option{10pt} -- geef een waarschuwing en gebruik 10 pt lettergrootte% en gebruik 11 pt lettergrootte
-
-\Option{11pt} -- gebruik 11 pt lettergrootte
-
-\Option{12pt} -- gebruik 12 pt lettergrootte
 
 \bigskip
 Als geen taal is opgegeven, wordt \Option{dutch} geselecteerd.
-De standaard lettergrootte is 12 pt als geen lettergrootte wordt opgegeven.
-De lettergrootte 10 pt wordt niet aanbevolen. De letters zijn te klein om
-goed te kunnen lezen.
 Opties die niet in bovenstaande lijst vermeld zijn, worden doorgegeven aan
 de onderliggende \DocClass{exam} class.
 
-\medskip
-De optie \Option{dyslect} zet de boolean \Option{dyslect} op true. De boolean
-kan gebruikt worden in conditionele compilatie:
-
-\begin{lstlisting}
-\ifdyslect
-   \usepackage[scaled=0.92]{helvet}
-   \renewcommand*\familydefault{\sfdefault}
-   \usepackage[EULERGREEK]{sansmath}
-   \sansmath
-   \let\textit\textbf
-   \let\texttt\textbf
-   \let\textsl\textbf
-\else
-   \usepackage{mathptmx}
-\fi
-\end{lstlisting}
-%\bigskip
-
-%%Merk op dat het gebruik van de optie \Option{dyslect} in ieder geval er voor
-%%zorgt dat een aantal stijlen (italics, slanted en teletype) veranderd wordt in
-%%boldface.
 
 \medskip
 De optie \Option{vanilla} zorgt ervoor dat de \DocClass{tisdexam} class `kaal'
 wordt opgeleverd. Zie hoofdstuk~\ref{sec:vanilla}.
 %In feite is het nu identiek aan de \DocClass{exam} class met
 %de mogelijkheid tot het genereren van voorblad.
-
-\medskip
-De optie \Option{concept} typeert het document als concept. In de rechter header
-wordt het woord CONCEPT afgedrukt en op het voorblad wordt de toetscode
-gevolgd door het woord (CONCEPT) (inclusief de haakjes).
-
-\medskip
-De optie \Option{mimicwordtwentyten} probeert de resulterende uitvoer zoveel
-mogelijk op uitvoer van Word 2010 te laten lijken. Op dit moment wordt in de
-eigenschappen van de uitgevoerde PDF de creator en producer op Word 2010 gezet.
-%Het \lstinline|\TeX|-commando op het voorblad wordt niet afdrukt.
 
 \bigskip
 Een voorbeeld van het gebruik van de \DocClass{tisdexam} class:
@@ -273,7 +235,7 @@ Een voorbeeld van het gebruik van de \DocClass{tisdexam} class:
 Nog een voorbeeld van het gebruik van de \DocClass{tisdexam} class:
 \bigskip
 
-\verb|\documentclass[a4paper,english,addpoints,12pt,concept,dyslect]{tisdexam}|
+\verb|\documentclass[a4paper,english,addpoints,12pt]{tisdexam}|
 \bigskip
 
 De Engelse en Amerikaanse spelwijzen zijn volledig
@@ -291,19 +253,19 @@ toetsnaam en opsteller. De commando's zijn hieronder te vinden.
 \bigskip
 
 \begin{tabular}{lp{11.9cm}}
-\verb|\locatie| & De locatie van de toets; Delft of Den Haag (The Hague) \\
 \verb|\opleiding| & De opleiding, volledig uitgeschreven\\ 
 \verb|\toetsnaam| & De afkorting van de toets/vak \\
 \verb|\toetsnaamkort| & De (korte) code van de toets/vak, wordt in de footer afgedrukt \\ 
 \verb|\opsteller| & De opsteller van deze toets, meestal de docent die het betreffende vak geeft. \\
-\verb|\tweedelezer| & De tweede lezer, een docent die de toets gecontroleerd heeft op correctheid. \\
 \verb|\toetsdatum| & De datum waarop de toets gegeven wordt, met de maandnaam volledig uitgeschreven \\ 
 \verb|\toetsdatumkort| & Korte notatie van de toetsdatum in dd-mm-jjjj \\
-\verb|\tijd|       & De tijdvak waarin de toets gegeven wordt, begin- en eindtijd \\
-\verb|\groep|     & De groep of groepen waarvoor de toets bedoeld is \\ 
+\verb|\begintijd|       & De tijdvak waarin de toets gegeven wordt, begin- en eindtijd \\
+\verb|\eindgroep|     & De groep of groepen waarvoor de toets bedoeld is \\ 
+\verb|\tijdsduur| & Tijdsduur van de toets \\
 \verb|\cursuscode|    & De cursuscode van het vak. \\
-\verb|\aantalbladzijden| & Het aantal pagina's waaruit de toets bestaat, inclusief het voorblad \\
-\verb|\aantalvragen| & Het aantal opgaven waaruit de toets bestaat \\
+\verb|\aantalpaginas| & Het aantal pagina's waaruit de toets bestaat, inclusief het voorblad \\
+\verb|\aantalopenvragen| & Het aantal open opgaven waaruit de toets bestaat \\
+\verb|\aantalgeslotenvragen| & Het aantal gesloten opgaven waaruit de toets bestaat \\
 \verb|\opmerkingen| & Een vrij veld waar allerlei opmerkingen kunnen worden geplaatst \\
 \verb|\cesuur| & Een vrij veld waarin de cesuur van de toets gepresenteerd wordt \\
 \end{tabular}
@@ -314,54 +276,39 @@ mogen worden. De commando's zijn hieronder te vinden. In feite zijn het allemaal
 of false (default) gezet kunnen worden.
 
 \bigskip
-\begin{tabular}{lp{8cm}}
-\verb|\gelinieerdpapiertrue| & Gelinieerd papier \\
-\verb|\opgavenbladentrue| & Opgavebladen met ruimte om de vragen te beantwoorden \\
+\begin{tabular}{lp{10cm}}
+\verb|\voltijdtrue| & Toets voor voltijd \\
+\verb|\deeltijdtrue| & toets voor deeltijd \\
+\verb|\duaaltrue| & toets voor duaal \\
+\verb|\toetspapiertrue| & Gelinieerd papier \\
+\verb|\antwoordenbladentrue| & Opgavebladen met ruimte om de vragen te beantwoorden \\
+\verb|\antwoordenbladenabcdetrue| & Antwoordformulier ABCDE \\
 \verb|\ruitjespapiertrue| & Ruitjespapier \\
 \verb|\kladpapiertrue| & Kladpapier \\
-\verb|\antwoordformulierabcdetrue| & Antwoordformulier ABCDE \\
-\verb|\omslaggemaakttentamentrue| & Gelinieerd omslag voor het tentamen \\
-\verb|\antwoordformulierjaneetrue| & Antwoordformulier Ja/Nee \\
-\verb|\overigtrue| & Overige zaken die verstrekt worden. Zie ook \verb|\overig| \\
-\verb|\antwoordformulierjaneevraagtekentrue| & Antwoordformulier Ja/Nee/Vraagteken \\
-\verb|\bijlagentrue| & Bijlagen die verstrekt worden. Zie ook \verb|\bijlagen| \\
+\verb|\tekenbenodigdhedentrue| & Gebruik van tekenbenodigdheden (passer, liniaal) \\
 \verb|\eenvoudigerekenmachinetrue| & Gebruik eenvoudige rekenmachine \\ 
-%\verb|\tekenbenodigdhedentrue| & Gebruik van tekenbenodigdheden (passer, liniaal) \\
 \verb|\grafischerekenmachinetrue| & Gebruik grafische rekenmachine \\
-\verb|\eigenaantekeningentrue| & Gebruik eigen aantekeningen. Zie ook \verb|\eigenaantekeningen| \\
-\verb|\computertrue| & Gebruik computer \\
-\verb|\boekendictatentrue| & Gebruik van boeken en dictaten. Zie ook \verb|\boekendictaten| \\
-\verb|\formulebladentrue| & Gebruik formulebladen. Zie ook \verb|\formulebladen| \\
+\verb|\formulebladentrue| & Gebruik formulebladen. \\
+\verb|\wetbundeltrue| & Wetbundel. \\
+\verb|\aantekeningentrue| & Gebruik eigen aantekeningen. \\
+\verb|\boektrue| & Gebruik van boeken  \\
+\verb|\overigtrue| & Overige zaken die verstrekt worden. Zie ook \verb|\overig| \\
+\verb|\geenhulpmiddelentrue| & Geen hulpmiddelen toegestaan.
 \end{tabular}
+
+
+
+
 
 \medskip
 Bij deze booleans zijn nog een paar velden mogelijk:
 
 \bigskip
 \begin{tabular}{lp{15cm}}
-\verb|\overig| & Wat verder verstrekt wordt \\
-\verb|\bijlagen| & De bijlagen \\
-\verb|\formulebladen| & Welke formulebladen gebruikt mag worden \\
-\verb|\eigenaantekeningen| & Eigen aantekeningen \\
-\verb|\boekendictaten| & Welke boeken en dictaten gebruikt mogen worden \\
+\verb|\overig| & Wat verder verstrekt wordt. \\
+\verb|\opmerkingen| & opmerkingen.
 \end{tabular}
 
-\bigskip
-Deze velden hebben een beperkte ruimte. Verwijs liever naar de opmerkingen en vul bij \verb|\opmerkingen|
-de benodigde informatie in.
-
-\bigskip
-Er zijn nog twee booleans die gezet kunnen worden. Slechts \'e\'en van de twee mag gezet worden.
-
-\bigskip
-\begin{tabular}{lp{9cm}}
-\verb|\documentengesorteerddocumenttrue| & Alle documenten voorzien van naam en studentnummer, per document gesorteerd \\
-\verb|\documentengesorteerdstudenttrue| & Alle documenten voorzien van naam en studentnummer, per student gesorteerd (in omslag) \\
-\end{tabular}
-
-%%%\bigskip
-%%%De argumenten bij de commando's \verb|\toetsnaamkort|, \verb|\groep|, \verb|\toetsdatum|
-%%%en \verb|\toetsinleveren| worden volledig met hoofdletters afgedrukt.
 
 \medskip
 Het argument van het commando \verb|\toetsdatumkort| wordt niet op het voorblad
@@ -369,11 +316,11 @@ geplaatst, maar in de footer van de vervolgbladen.
 
 \medskip
 Het aantal pagina's van de toets is op te vragen door het commando \verb|\numpages| en
-kan direct via het commando \verb|\aantalbladzijden| worden ingesteld (dit is bij default
+kan direct via het commando \verb|\aantalpaginas| worden ingesteld (dit is bij default
 al gedaan):
 
 \bigskip
-\verb|\aantalbladzijden{\numpages}|
+\verb|\aantalpaginas{\numpages}|
 
 \bigskip
 Het aantal toetsvragen van de toets is op te vragen door het commando's \verb|\numopenquestions| en
@@ -381,16 +328,9 @@ Het aantal toetsvragen van de toets is op te vragen door het commando's \verb|\n
 Het commando \verb|\aantalvragen| kan hiermee worden ingesteld:
 
 \bigskip
-\verb|\aantalvragen{\numopenquestions{} open vragen, \nummultquestions{}|
+\verb|\aantalopenvragen{\numopenquestions}|
+\verb|\aantalgeslotenvragen{\nummultquestions}|
 
-\verb|                                                       meerkeuzevragen}|
-
-Default is het totaal aantal vragen ingesteld (\verb|\numquestions|).
-
-%%%\bigskip
-%%%Bij het commando \verb|\gebruikrekenmachine| moet \'e\'en van de volgende opties worden
-%%%ingevuld: Geen rekenmachine toegestaan, Alleen gewone rekenmachine, Grafische rekenmachine
-%%%(let hierbij op de hoofdletter aan het begin). De standaard waarde is Grafische rekenmachine.
 
 \bigskip
 Het maximaal aantal te behalen punten voor de hele toets is op te vragen via het commando
@@ -400,76 +340,59 @@ Het maximaal aantal te behalen punten voor de hele toets is op te vragen via het
 \bigskip
 \verb|\opmerkingen{Maximaal aantal te behalen punten is \numpoints.}|
 
-%%%\bigskip
-%%%NOOT: het commando \verb|\hulpmiddelen| is verwijderd vanaf versie 1.7.
-
-\bigskip
-Het commando \verb|\makecoverpage| genereert het verplichte toetsvoorblad.
-Een voorbeeld is te vinden op pagina~\pageref{pag:coverpage}. Bij het vormgeven
-van het toetsvoorblad zijn onderstaande commando's gebruikt.
-
 \newpage
-\begin{lstlisting}
-\opleiding{Elektrotechniek}
-\toetsnaam{INLDIG}
-\toetsnaamkort{INLDIG}
-\groep{EP11, EP12}
-\toetsdatum{donderdag 30 januari 2014}
-	\toetsdatumkort{30-01-2014}
-\tijd{13:00 -- 14:30 uur}
-\opmerkingen{Bij elke opgave staat het maximum aantal te behalen punten genoteerd, in totaal is maximaal \numpoints{} punten te behalen.}
-\cesuur{cijfer = (aantal behaalde punten/10) + 1}
-\opsteller{J.E.J. op den Brouw}
-\tweedelezer{J.Z.M. Broeders}
-\cursuscode{E-INLDIG-th1}
-\locatie{Delft}
 
-\gelinieerdpapiertrue
+\begin{lstlisting}
+\opsteller{Jesse op den Brouw}
+\opleiding{Elektro}
+\toetsnaam{DIGTEC}
+\toetsnaamkort{DIGTEC}
+\toetscode{E-DIGTEC-th1}
+
+%% Checkboxes
+\voltijdtrue
+\deeltijdtrue
+\duaaltrue
+
+%% More exam credentials
+\toetsdatum{24 november 2023}
+\toetsdatumkort{24-11-2023}
+\begintijd{8:45}
+\eindtijd{9:30}
+\tijdsduur{45}
+
+%% Automatic calculated if not used
+%\aantalpaginas{}
+%\aantalopenvragen{}
+%\aantalgeslotenvragen{}
+
+%% Even mor credentials
+\cesuur{45}
+\puntenverdeling{1 punt voor elke vraag}
+
+%% More checkboxes
+\toetspapiertrue
+\antwoordenbladentrue
+\antwoordenbladenabcdetrue
+\ruitjespapiertrue
 \kladpapiertrue
+\tekenbenodigdhedentrue
+\eenvoudigerekenmachinetrue
 \grafischerekenmachinetrue
 \formulebladentrue
-\formulebladen{Boekje Aad Sluyter}
+\wetbundeltrue
+\aantekeningentrue
+\boektrue
+\overigtrue
+\geenhulpmiddelentrue
 
-\documentengesorteerddocumenttrue
+%% For use with \overigtrue
+\overig{Regeltje tekst}
+
+%% Cooments/remarks
+\opmerkingen{Je kunt in dit vakje opmerkingen plaatsen. Als het goed is wordt alles automatisch getypeset.}
 \end{lstlisting}
 
-\section{Overige commando's}
-\label{sec:overigecom}
-
-De \DocClass{tisdexam} class laadt automatisch de \Package{hyperref} package
-en stelt enkele parameters m.b.t.\@ het PDF-bestand in, zoals de titel.
-
-%\medskip\noindent
-Het aanroepen van de \Package{hyperref} package gebeurt pas op het allerlaatste
-moment, vlak voor het begin van het document. Er is een aantal packages die
-pas na de \Package{hyperref} package moeten worden geladen zoals de \Package{algorithm}
-package.
-
-%\medskip\noindent
-Het commando \verb|\setuphyperrefheaderfooter| zorgt ervoor dat \Package{hyperref}
-wordt uitgevoerd op het moment van uitvoeren van het commando. Voorbeeld:
-
-\begin{lstlisting}
-  ...
-\usepackage{float}
-\setuphyperrefheaderfooter % hyperref package loaded
-\usepackage{algorithm}
-
-\begin{document}
-  ...
-\end{lstlisting}
-
-\medskip\noindent
-Met het command \verb|\nosetuphyperrefheaderfooter| wordt het automatisch
-gebruik van de \Package{hyperref} package \'{e}n headers en footers uitgezet.
-De gebruiker moet dan zelf de package laden en opzetten. Dat geldt ook
-voor het gebruik van headers en footers.
-
-%\medskip\noindent
-%Het commando \verb|\numopenquestions| expandeert tot het aantal open vragen.
-
-%\medskip\noindent
-%Het commando \verb|\nummultquestions| expandeert tot het aantal multiple choice vragen.
 
 \section{Aangepaste \DocClass{exam} class commando's}
 Een aantal commando's uit de \DocClass{exam} class is aangepast.
@@ -529,43 +452,26 @@ met de geselecteerde taal.
 \section{Gebruikte packages}
 In de `non-vanilla mode' worden de volgende packages expliciet geladen:
 
-\texttt{xcolor}, \texttt{babel}, \texttt{geometry}, \texttt{hyperref}, \texttt{amssymb}
+\texttt{tikz}, \texttt{babel}, \texttt{geometry}
 
 \medskip
 In de `vanilla-mode' worden de volgende packages expliciet geladen:
 
-\texttt{xcolor}, \texttt{babel}, \texttt{geometry}, \texttt{amssymb}
+\texttt{tikz}, \texttt{babel}, \texttt{geometry}
 
 
 \section{Meldingen}
 Een aantal meldingen kunnen gegenereerd worden, zie hieronder.
 
 \begin{description}\itemsep-3pt
-\item[\texttt{Do not use font size `10pt'. It is too small to read.}]
-  \hfill \\ Gebruiker heeft de 10pt-optie gebruikt. Normale tekst wordt wel
-            in 10 pt afgedrukt.
-\item[\texttt{Document is typed dyslect}]
-   \hfill \\ De optie \verb|dyslect| is geactiveerd.
 \item[\texttt{Document is typed vanilla}]
   \hfill \\  De optie \verb|vanilla| is geactiveerd.
-\item[\texttt{Document is typed concept}]
-   \hfill \\ De optie \verb|concept| is geactiveerd.
 \item[\texttt{No language specified, set to 'dutch'.}]
    \hfill \\ Er is geen taal geselecteerd, Nederlands is de standaardinstelling.  
 \item[\texttt{Subparts not allowed in this class}]
    \hfill \\ Er kunnen geen subparts gebruikt worden in deze class.
 \item[\texttt{Subsubparts not allowed in this class}]
   \hfill \\ Er kunnen geen subsubparts gebruikt worden in deze class.
-\item[\texttt{Document is rendered with answers}]
- \hfill \\ De optie \verb|answers| is gebruikt, de antwoorden/uitwerkingen
-           worden afgedrukt.
-\item[\texttt{Package hyperref and header and footers automaticly set up at begin of document}]
-  De pagina-opmaak en linking wordt automatisch geladen.
-\item[\texttt{Package parskip detected. Please view the coverpage for correct rendering}]
-  De package \verb|parskip| is geladen. Let er op dat \verb|parskip|
-            een aantal aanpassingen doet aan layout-parameters, bv\@ spati\"{e}ring bij lijsten.
-\item[\texttt{Document option mimicwordtwentyten is in effect}]
- \hfill \\ De optie \verb|mimicwordtwentyten| is gebruikt.
 \end{description}
 
 
@@ -767,17 +673,6 @@ Het goede antwoord op vraag \ref{opg:opg3} is \ref{ans:opg3}.
 
 \end{questions}
 
-
-\newpage
-\label{pag:coverpage}
-\noprintanswers
-%\toetsnaamkort{INLDIG (herkansing)}
-%\setlength{\parindent}{\myparindent}
-
-\thispagestyle{empty}
-%\newgeometry{bindingoffset=0.0in,left=2cm,right=2cm,top=1in,bottom=1in,footskip=.40in}
-
-\makecoverpage
 
 
 \end{document}
