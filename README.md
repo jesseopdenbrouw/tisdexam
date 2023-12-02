@@ -1,8 +1,8 @@
 
 
-# DOCUMENT CLASS tisdexam
+# Document Class `tisdexam`
 
-versie: 3.0alpha
+versie: 3.0alpha2
 datum:  01-dec-2023
 
 
@@ -16,7 +16,7 @@ Er is zoveel gewijzigd ten opzichte van het vorige toetsvoorblad (v2.0) zodat
 er geen poging is gedaan om de oude opties en commando's af te vangen met
 een foutmelding.
 
-*LET OP:*
+**LET OP:**
 
 De document class bestaat uit *drie* bestanden;
 
@@ -31,6 +31,6 @@ Deze document class is getest met TeXlive 2022 en TexStudio 4.6.3
 
 **Noot**
 
-TexStudio 4.6.3 crasht regelmatig met deze class. Gebruik zolang TexMaker.
+TexStudio 4.6.3 (Windows, niet op Linux) crasht regelmatig met deze class. Gebruik zolang TexMaker.
 
-Jesse, 01-dec-2024
+Jesse, 02-dec-2024
