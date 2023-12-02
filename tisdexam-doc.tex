@@ -1,10 +1,10 @@
 %%
 %%
-%%   tisdexam.tex - documentation for the tisdexam document class
+%%   tisdexam-doc.tex - documentation for the tisdexam document class
 %%
 %%   (c)2023, J.E.J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
-%%   v3.0\alpha -- 2023/12/01
+%%   v3.0\alpha -- 2023/12/02
 %%
 %%   
 %%
@@ -84,8 +84,6 @@
 %% Using floats
 \usepackage{float}
 
-%% Used dashed lines in tables
-\usepackage{arydshln}
 
 %% Use the AMS Mathematical characters
 \usepackage{mathtools}
@@ -144,12 +142,7 @@
 \newcommand\DocClass[1]{\texttt{#1}}
 \newcommand\Option[1]{\texttt{#1}}
 
-%% No indent
-\newlength\myparindent
-\setlength{\myparindent}{\parindent}
-\setlength{\parindent}{0pt}
-%% Don't use parskip
-%\usepackage{parskip}
+\usepackage{parskip}
 
 \pagestyle{headandfoot}
 \runningfooter{}{\thepage}{}
@@ -172,16 +165,13 @@ De \DocClass{tisdexam} document class kan gebruikt worden om toetsen voor
 de Faculteit TIS op te maken volgens een vast format. De \DocClass{tisdexam}
 kan gebruikt worden met \LaTeX, lua\LaTeX\ en Xe\LaTeX.
 
-\medskip
 De class heeft een aantal opties en een aantal \textsl{commando's} (ook wel
 \textsl{macro's} genoemd).
 
-\medskip
 Een belangrijk onderdeel van een toets is het verplichte voorblad. Hierop kan
 allerlei informatie gegeven aan de student en surveillant. De opmaak van het
 voorblad is heel eenvoudig te realiseren m.b.v.\@ commando's.
 
-\medskip
 De \DocClass{tisdexam} class is gebouwd bovenop de \DocClass{exam}
 class. Alle opties uit die class zijn beschikbaar via de
 \DocClass{tisdexam} class. De \DocClass{exam} class roept zijn
@@ -192,15 +182,11 @@ Een aantal \DocClass{exam} class commands is gewijzigd en twee
 
 \section{Gebruik en class opties}
 De document class wordt op de gebruikelijke manier geladen met:
-\bigskip
 
 \verb|\documentclass[| \textsl{opties} \verb|]{tisdexam}|
-\bigskip
 
-\noindent
 waarbij \textsl{opties} een lijst van opties is. De opties van \DocClass{tisdexam} zijn
 onderstaand opgesomd:
-\smallskip
 
 \Option{dutch} -- gebruik nederlandse spelling en toetsvoorblad
 
@@ -213,30 +199,22 @@ onderstaand opgesomd:
 \Option{vanilla} -- typeer het document als 'vanilla'
 
 
-\bigskip
 Als geen taal is opgegeven, wordt \Option{dutch} geselecteerd.
 Opties die niet in bovenstaande lijst vermeld zijn, worden doorgegeven aan
 de onderliggende \DocClass{exam} class.
 
-
-\medskip
 De optie \Option{vanilla} zorgt ervoor dat de \DocClass{tisdexam} class `kaal'
 wordt opgeleverd. Zie hoofdstuk~\ref{sec:vanilla}.
 %In feite is het nu identiek aan de \DocClass{exam} class met
 %de mogelijkheid tot het genereren van voorblad.
 
-\bigskip
 Een voorbeeld van het gebruik van de \DocClass{tisdexam} class:
-\bigskip
 
 \verb|\documentclass[a4paper,dutch,addpoints,fleqn,11pt]{tisdexam}|
-\bigskip
 
 Nog een voorbeeld van het gebruik van de \DocClass{tisdexam} class:
-\bigskip
 
 \verb|\documentclass[a4paper,english,addpoints,12pt]{tisdexam}|
-\bigskip
 
 De Engelse en Amerikaanse spelwijzen zijn volledig
 ge\"{\i}mplementeerd. Als toetsvoorblad wordt de Engelse variant gebruikt.
@@ -250,9 +228,9 @@ betrekking hebben op het voorblad.  Het voorblad kan gezien worden als onderverd
 in drie secties die elkaar niet logischerwijze opvolgen. De eerste sectie geeft de
 algemene informatie over de toets, zoals
 toetsnaam en opsteller. De commando's zijn hieronder te vinden.
-\bigskip
 
 \begin{tabular}{lp{11.9cm}}
+\verb|\faculteit| & De faculteit (standaard TIS)\\
 \verb|\opleiding| & De opleiding, volledig uitgeschreven\\ 
 \verb|\toetsnaam| & De afkorting van de toets/vak \\
 \verb|\toetsnaamkort| & De (korte) code van de toets/vak, wordt in de footer afgedrukt \\ 
@@ -270,12 +248,10 @@ toetsnaam en opsteller. De commando's zijn hieronder te vinden.
 \verb|\cesuur| & Een vrij veld waarin de cesuur van de toets gepresenteerd wordt \\
 \end{tabular}
 
-\bigskip
 De tweede sectie geeft aan wat er allemaal bij de toets wordt verstrekt en welke hulpmiddelen gebruikt
 mogen worden. De commando's zijn hieronder te vinden. In feite zijn het allemaal booleans die op true
 of false (default) gezet kunnen worden.
 
-\bigskip
 \begin{tabular}{lp{10cm}}
 \verb|\voltijdtrue| & Toets voor voltijd \\
 \verb|\deeltijdtrue| & toets voor deeltijd \\
@@ -297,47 +273,33 @@ of false (default) gezet kunnen worden.
 \end{tabular}
 
 
-
-
-
-\medskip
 Bij deze booleans zijn nog een paar velden mogelijk:
 
-\bigskip
 \begin{tabular}{lp{15cm}}
 \verb|\overig| & Wat verder verstrekt wordt. \\
 \verb|\opmerkingen| & opmerkingen.
 \end{tabular}
 
-
-\medskip
 Het argument van het commando \verb|\toetsdatumkort| wordt niet op het voorblad
 geplaatst, maar in de footer van de vervolgbladen.
 
-\medskip
 Het aantal pagina's van de toets is op te vragen door het commando \verb|\numpages| en
 kan direct via het commando \verb|\aantalpaginas| worden ingesteld (dit is bij default
 al gedaan):
 
-\bigskip
 \verb|\aantalpaginas{\numpages}|
 
-\bigskip
 Het aantal toetsvragen van de toets is op te vragen door het commando's \verb|\numopenquestions| en
 \verb|\nummultquestions| voor respectievelijk open vragen en multiple choice vragen.
 De commando's \verb|\aantalopenvragen| en \verb|\aantalgeslotenvragen| kunnen hiermee worden ingesteld:
 
-\bigskip
 \verb|\aantalopenvragen{\numopenquestions}| \\
 \verb|\aantalgeslotenvragen{\nummultquestions}|
 
-
-\bigskip
 Het maximaal aantal te behalen punten voor de hele toets is op te vragen via het commando
 \verb|\numpoints| en kan bijvoorbeeld als invoer dienen voor het commando \verb|\opmerkingen| of
 \verb|\cesuur|:
 
-\bigskip
 \verb|\opmerkingen{Maximaal aantal te behalen punten is \numpoints.}|
 
 \newpage
@@ -396,7 +358,6 @@ Het maximaal aantal te behalen punten voor de hele toets is op te vragen via het
 
 \section{Aangepaste \DocClass{exam} class commando's}
 Een aantal commando's uit de \DocClass{exam} class is aangepast.
-\medskip
 
 \verb|\pointname| -- opnieuw gedefinieerd als \verb|{ pt}| (let op de spatie).
 
@@ -408,7 +369,6 @@ Een aantal commando's uit de \DocClass{exam} class is aangepast.
 
 \verb|\choicelabel| -- opnieuw gedefinieerd als \verb|\thechoice)| (let op het haakje).
 
-\medskip\noindent
 Het commando \verb|\droppoints| is opnieuw gedefinieerd als
 
 \begin{lstlisting}
@@ -419,7 +379,6 @@ Het commando \verb|\droppoints| is opnieuw gedefinieerd als
 }
 \end{lstlisting}
 
-\medskip\noindent
 Het commando \verb|\qformat| is opnieuw gedefinieerd als
 
 \begin{lstlisting}
@@ -454,11 +413,11 @@ In de `non-vanilla mode' worden de volgende packages expliciet geladen:
 
 \texttt{tikz}, \texttt{babel}, \texttt{geometry}
 
-\medskip
 In de `vanilla-mode' worden de volgende packages expliciet geladen:
 
 \texttt{tikz}, \texttt{babel}, \texttt{geometry}
 
+Vanaf versie 3.0 wordt \verb|hyperref| niet meer automatisch geladen.
 
 \section{Meldingen}
 Een aantal meldingen kunnen gegenereerd worden, zie hieronder.
@@ -484,28 +443,22 @@ Gebruik de nieuwe commando's \verb|\tisdexamcheckboxeshook|, \\
 \verb|\tisdexamchoiceshook| en \verb|\tisdexamquestionshook|. Uiteraard geldt
 dit niet als de vanilla-modus wordt gebruikt.
 
-\medskip
 De package \verb|geometry| wordt geladen met een standaard instelling. Als
 gebruiker kan deze package dus niet geladen worden. Gebruik het commando
 \verb|newgeometry| om de pagina-layout in te stellen. Zie ook volgende
 hoofdstuk.
 
-%In de resulterende PDF-uitvoer is een \textsl{custom} eigenschap opgenomen
-%(zie Document Properties, tabblad Custom) met de naam PTEX.fullbanner.
-%Deze kan alleen met de hand verwijderd worden.
 
 \section{Tips}
-Standaard is de linkkleur op blauw gezet. Een andere kleur kan eenvoudig
-geselecteerd worden door het volgende net onder het begin van het document
-te zetten. De links worden in kleur afgedrukt, dus niet met een omranding.
+Het is handig om \verb|hyperref| te laden. De linkkleur is standaard zwart.
+Om De kleur in blauw te veranderen, gebruiken we:
 
 \begin{lstlisting}
 \begin{document}
-\hypersetup{linkcolor=red}
+\hypersetup{colorlinks,linkcolor=blue}
   ...
 \end{lstlisting}
 
-\medskip
 Op een (papieren) toets zijn kleuren misschien niet handig, maar in een
 digitale versie met antwoorden weer wel:
 
@@ -514,7 +467,7 @@ digitale versie met antwoorden weer wel:
 \ifprintanswers\else\hypersetup{linkcolor=black}\fi
 \end{lstlisting}
 
-\medskip
+
 Standaard is de witruimte tussen het eind van een vraag en het begin van een
 nieuwe vraag ingesteld op 0,7 cm. Om deze instelling te wijzigen moet de
 lengte \verb|\questionsep| aangepast worden.
@@ -523,7 +476,7 @@ lengte \verb|\questionsep| aangepast worden.
 \setlength{\questionsep}{0.4cm}
 \end{lstlisting}
 
-\medskip
+
 De \verb|geometry| package wordt geladen en de linker en rechter marge worden
 ingesteld op 2~cm. De pagina-layout kan opnieuw worden ingesteld
 d.m.v.\@ het commando \verb|\newgeometry|.
@@ -536,7 +489,6 @@ d.m.v.\@ het commando \verb|\newgeometry|.
 \section{Voorbeeldvragen}
 In dit hoofdstuk wordt een aantal voorbeeldvragen gegeven
 
-\medskip\noindent
 
 \begin{questions}
 Voorbeeld van een enkele open vraag:
@@ -569,7 +521,6 @@ Gegeven de functies: $f(x) = x^3+3x$ en $g(x) = x^2 +6x$
 \part[7] \droppoints\ Bepaal de snijpunten van $f(x)$ met $g(x)$.
 \end{parts}
 
-\bigskip
 Voorbeeld vraag uit een toets Belastingrecht van het NCOI (examennummer:
 96038, dd 23 november 2013) met andere benaming voor
 punten.
@@ -632,7 +583,6 @@ uw antwoord. {} \droppoints
 Bakker verricht? Motiveer uw antwoord. {} \droppoints
 \end{parts}
 
-\bigskip\noindent
 Voorbeeld van een multiple choice vraag:
 
 \begin{lstlisting}
