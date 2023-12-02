@@ -1,6 +1,8 @@
 \documentclass[12pt,dutch,addpoints]{tisdexam}
 
 %% Exam credentials
+% Standaard TIS
+%\faculteit{TIS}
 \opsteller{Jesse op den Brouw}
 \opleiding{Elektro}
 \toetsnaam{DIGTEC}
@@ -50,6 +52,7 @@
 %% Cooments/remarks
 \opmerkingen{Je kunt in dit vakje opmerkingen plaatsen. Als het goed is wordt alles automatisch getypeset.}
 
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
 
 \begin{document}
 
@@ -70,16 +73,17 @@
 
 
 \question[5]
-Integreer: \[\int \mathrm{e}^{-x}\cos 2x \, \mathrm{d}x\]
+Bereken de integraal: \[f(x) = \int \mathrm{e}^{-x}\cos 2x \, \mathrm{d}x\]
 
 \question[5]
-Geef de afgeleide van $x^2+2x+5$.
+Bereken de afgeleide van $f(x) = x^2+2x+5$.
 
 \question[2]
+\label{opg:opg2}
 Wat is het antwoord op de vraag der vragen?
 \begin{choices}
 \choice 1
-\choice 42
+\CorrectChoice \label{ans:ans2} 42
 \choice 6
 \choice 3
 \end{choices}
@@ -95,5 +99,7 @@ Dit is een inleidend stukje op de subvragen.
 
 \end{questions}
 
+\hrulefill
 
+Het antwoord van opgave \ref{opg:opg2} is \ref{ans:ans2}.
 \end{document}
