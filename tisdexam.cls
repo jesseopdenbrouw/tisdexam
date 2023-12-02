@@ -7,7 +7,7 @@
 %%
 %% (c)2023, J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
-%% Version 3.0  -- initial release
+%% Version 3.0alpha  -- initial release
 %%
 %% Class options:
 %%  dutch - load dutch spelling options
@@ -17,6 +17,7 @@
 %%  vanilla - plain setup
 
 %% Class Commands:
+%%  \faculteit - The faculty with THUAS
 %%  \opleiding - the study programme such as "Electrical Engineering"
 %%  \toetsnaam - full name of the course
 %%  \toetsnaamkort - abbreviated exam course code
@@ -85,7 +86,7 @@
 
 %% Credentials
 \def\fileversion{3.0alpha}
-\def\filedate{2023/12/01}
+\def\filedate{2023/12/02}
 \edef\tisdexamfileversion{\fileversion}
 \edef\tisdexamfiledate{\filedate}
 
@@ -163,6 +164,7 @@
 
 
 %% These are the commands needed to fill in the cover page.
+\newcommand{\faculteit}[1]{\def\tisdexam@faculteit{#1}}
 \newcommand{\opleiding}[1]{\def\tisdexam@opleiding{#1}}
 \newcommand{\toetsnaamkort}[1]{\def\tisdexam@toetsnaamkort{#1}}
 \newcommand{\toetsnaam}[1]{\def\tisdexam@toetsnaam{#1}}
@@ -184,6 +186,7 @@
 
 %% Default cover page information
 \def\tisdexam@opsteller{\textbf{??}}
+\def\tisdexam@faculteit{TIS}
 \def\tisdexam@opleiding{\textbf{??}}
 %\def\tisdexam@tweedelezer{\textbf{??}}
 \def\tisdexam@toetsnaamkort{\textbf{??}}
@@ -231,17 +234,18 @@
 \draw [thuasgreen,fill=thuasgreen] (0,0) -- (12,0) -- (11.5,-1) -- (0,-1) -- cycle;
 \node[below right,white,yshift=-1mm] at (0,0) {\setfontxviii\textbf{EXAM COVER PAGE}};
 
+\node [right,fillincolor] at (1.6,-1.88) {\setfontx \textbf{\tisdexam@faculteit}};
 \node [right,fillincolor] at (0.1,-3.2) {\setfontxviii \tisdexam@toetsnaam};
 \node [right,fillincolor] at (0.1,-4.70) {\setfontxii \tisdexam@opleiding};
-\node [right,fillincolor] at (2.0,-6.0) {\setfontviii \tisdexam@toetscode};
+\node [right,fillincolor] at (2.0,-5.975) {\setfontviii \tisdexam@toetscode};
 \node [right,fillincolor] at (0.1,-7.5) {\setfontxii \tisdexam@opsteller};
 
 % Full Time
-\ifvoltijd \node [fillincolor] at (4.48,-5.3) {\checkblock}; \fi
+\ifvoltijd \node [fillincolor] at (4.49,-5.32) {\checkblock}; \fi
 % Part time
-\ifdeeltijd \node [fillincolor] at (6.00,-5.3) {\checkblock}; \fi
+\ifdeeltijd \node [fillincolor] at (6.00,-5.32) {\checkblock}; \fi
 % Dual
-\ifduaal \node [fillincolor] at (8.53,-5.3) {\checkblock}; \fi
+\ifduaal \node [fillincolor] at (8.54,-5.32) {\checkblock}; \fi
 
 % Exam date
 \node [right,fillincolor] at (7.00, -8.5) {\setfontx \tisdexam@toetsdatum};
@@ -280,7 +284,7 @@
 % Calc simple
 \ifeenvoudigerekenmachine
    \node [fillincolor] at (6.2,-15.55) {\checkblock}; 
-   \node [fillincolor] at (6.75,-16.00) {\checkblock};
+   \node [fillincolor] at (6.75,-16.02) {\checkblock};
 \fi
 % Calc scientific
 \ifgrafischerekenmachine
@@ -291,19 +295,19 @@
 \ifformulebladen \node [fillincolor] at (6.2,-16.80) {\checkblock}; \fi
 
 % Book of laws
-\ifwetbundel \node [fillincolor] at (11.1,-14.72) {\checkblock}; \fi
+\ifwetbundel \node [fillincolor] at (11.09,-14.72) {\checkblock}; \fi
 % Own summary
-\ifaantekeningen \node [fillincolor] at (11.1,-15.11) {\checkblock}; \fi
+\ifaantekeningen \node [fillincolor] at (11.09,-15.11) {\checkblock}; \fi
 % Books
-\ifboek \node [fillincolor] at (11.1,-15.49) {\checkblock}; \fi
+\ifboek \node [fillincolor] at (11.09,-15.49) {\checkblock}; \fi
 % Other
 \ifoverig
-   \node [fillincolor] at (11.1,-16.25) {\checkblock};
+   \node [fillincolor] at (11.09,-16.25) {\checkblock};
    % Other (text)
    \node [right,fillincolor,] at (12.0,-16.27) {\setfontviii \tisdexam@overig};
 \fi
 % No tools
-\ifgeenhulpmiddelen \node [fillincolor] at (11.1,-16.63) {\checkblock}; \fi
+\ifgeenhulpmiddelen \node [fillincolor] at (11.09,-16.63) {\checkblock}; \fi
 
 % Comment
 \node [right,fillincolor,text width=7cm] at (9,-19) {\setfontx \tisdexam@opmerkingen} rectangle ++(2,-4) ;
@@ -324,6 +328,7 @@
 \draw [thuasgreen,fill=thuasgreen] (0,0) -- (12,0) -- (11.5,-1) -- (0,-1) -- cycle;
 \node[below right,white,yshift=-1mm] at (0,0) {\setfontxviii\textbf{TOETSVOORBLAD}};
 
+\node [right,fillincolor] at (1.4,-1.92) {\setfontx \textbf{\tisdexam@faculteit}};
 \node [right,fillincolor] at (0.1,-3.2) {\setfontxviii \tisdexam@toetsnaam};
 \node [right,fillincolor] at (0.1,-4.70) {\setfontxii \tisdexam@opleiding};
 \node [right,fillincolor] at (2.0,-6.08) {\setfontviii \tisdexam@toetscode};
@@ -358,13 +363,13 @@
 \node [right,fillincolor] at (7.20, -13.38) {\setfontx \tisdexam@puntenverdeling};
 
 % Exam paper
-\iftoetspapier \node [fillincolor] at (0.335,-15.33) {\checkblock}; \fi
+\iftoetspapier \node [fillincolor] at (0.335,-15.34) {\checkblock}; \fi
 % Answer sheet
-\ifantwoordenbladen \node [fillincolor] at (0.335,-15.72) {\checkblock}; \fi
+\ifantwoordenbladen \node [fillincolor] at (0.335,-15.73) {\checkblock}; \fi
 % Answer sheet ABCDE
-\ifantwoordenbladenabcde \node [fillincolor] at (0.335,-16.10) {\checkblock}; \fi
+\ifantwoordenbladenabcde \node [fillincolor] at (0.335,-16.12) {\checkblock}; \fi
 % Graph paper
-\ifruitjespapier \node [fillincolor] at (0.335,-16.50) {\checkblock}; \fi
+\ifruitjespapier \node [fillincolor] at (0.335,-16.51) {\checkblock}; \fi
 
 % Scrap paper
 \ifkladpapier \node [fillincolor] at (6.3,-15.33) {\checkblock}; \fi
@@ -373,12 +378,12 @@
 % Calc simple
 \ifeenvoudigerekenmachine
    \node [fillincolor] at (6.3,-16.22) {\checkblock}; 
-   \node [fillincolor] at (6.85,-16.70) {\checkblock};
+   \node [fillincolor] at (6.87,-16.70) {\checkblock};
 \fi
 % Calc scientific
 \ifgrafischerekenmachine
    \node [fillincolor] at (6.3,-16.22) {\checkblock}; 
-   \node [fillincolor] at (6.85,-17.10) {\checkblock};
+   \node [fillincolor] at (6.87,-17.10) {\checkblock};
 \fi
 % Formula sheets
 \ifformulebladen \node [fillincolor] at (6.3,-17.48) {\checkblock}; \fi
@@ -388,7 +393,7 @@
 % Own summary
 \ifaantekeningen \node [fillincolor] at (11.28,-15.80) {\checkblock}; \fi
 % Books
-\ifboek \node [fillincolor] at (11.28,-16.20) {\checkblock}; \fi
+\ifboek \node [fillincolor] at (11.28,-16.19) {\checkblock}; \fi
 % Other
 \ifoverig
    \node [fillincolor] at (11.28,-16.95) {\checkblock};
