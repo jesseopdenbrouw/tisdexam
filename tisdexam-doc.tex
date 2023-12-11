@@ -4,7 +4,7 @@
 %%
 %%   (c)2023, J.E.J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
-%%   v3.0alpha3 -- 2023/12/02
+%%   v3.0alpha4 -- 2023/12/11
 %%
 %%   
 %%
@@ -67,39 +67,10 @@
 \opmerkingen{Je kunt in dit vakje opmerkingen plaatsen. Als het goed is wordt alles automatisch getypeset.}
 
 
-
-
-
-%\usepackage{showframe}
-
-%% Use packages...
-\usepackage{array}
-
-%% Include graphics files
-\usepackage{graphicx}
-
-%% Enumerate items
-%\usepackage{enumitem}
-
-%% Using floats
-\usepackage{float}
-
-
-%% Use the AMS Mathematical characters
-\usepackage{mathtools}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\setlength{\mathindent}{1em}
-
 %% Making captions nicer...
 \usepackage[font=footnotesize,format=plain,labelfont=bf,textfont=sl]{caption}
 \captionsetup[table]{justification=raggedright,singlelinecheck=off,skip=4pt}
 
-%% Zet \bar altijd op een strut
-\newcommand*{\oline}[1]{\overline{#1\mathstrut}}
-
-%% English spelling of chapter, section, etc.
-%\usepackage[dutch]{babel}
 
 % Use hyperrefs in PDFs
 \definecolor{red}{rgb}{1,0,0}
@@ -210,11 +181,11 @@ wordt opgeleverd. Zie hoofdstuk~\ref{sec:vanilla}.
 
 Een voorbeeld van het gebruik van de \DocClass{tisdexam} class:
 
-\verb|\documentclass[a4paper,dutch,addpoints,fleqn,11pt]{tisdexam}|
+\verb|\documentclass[dutch,addpoints,fleqn,11pt]{tisdexam}|
 
 Nog een voorbeeld van het gebruik van de \DocClass{tisdexam} class:
 
-\verb|\documentclass[a4paper,english,addpoints,12pt]{tisdexam}|
+\verb|\documentclass[english,addpoints,12pt]{tisdexam}|
 
 De Engelse en Amerikaanse spelwijzen zijn volledig
 ge\"{\i}mplementeerd. Als toetsvoorblad wordt de Engelse variant gebruikt.
@@ -357,6 +328,14 @@ Het maximaal aantal te behalen punten voor de hele toets is op te vragen via het
 \opmerkingen{Je kunt in dit vakje opmerkingen plaatsen. Als het goed is wordt alles automatisch getypeset.}
 \end{lstlisting}
 
+\section{Genereren van het voorblad}
+
+Het voorblad wordt gegenereerd met het commmando \verb|\makecoverpage|.
+Bij gebruik van een bepaald lettertype kan het zijn dat de gevulde checkbboxes een beetje verschoven zijn. Het raamwerk is dan licht verschoven. Dat kan gecompenseerd worden met optionele argumenten bij \verb|\makecoverpage|, bijvoorbeeld:
+
+\verb|\makecoverpage[xshift=1mm,yshift=1mm]|
+
+De verschuiving mag ook negatoef zijn.
 
 \section{Aangepaste \DocClass{exam} class commando's}
 Een aantal commando's uit de \DocClass{exam} class is aangepast.
