@@ -2,8 +2,9 @@
 
 # Document Class `tisdexam`
 
-versie: 3.0alpha2
-datum:  01-dec-2023
+versie: 3.0alpha4
+
+datum:  11-dec-2023
 
 
 -----------------------
@@ -33,4 +34,4 @@ Deze document class is getest met TeXlive 2022 en TexStudio 4.6.3
 
 TexStudio 4.6.3 (Windows, niet op Linux) crasht regelmatig met deze class. Gebruik zolang TexMaker.
 
-Jesse, 02-dec-2024
+Jesse, 11-dec-2024
