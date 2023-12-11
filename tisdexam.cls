@@ -7,7 +7,7 @@
 %%
 %% (c)2023, J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
-%% Version 3.0alpha3  -- initial release
+%% Version 3.0alpha4  -- initial release
 %%
 %% Class options:
 %%  dutch - load dutch spelling options
@@ -85,8 +85,8 @@
 %%  tikz, babel, geometry
 
 %% Credentials
-\def\fileversion{3.0alpha3}
-\def\filedate{2023/12/02}
+\def\fileversion{3.0alpha4}
+\def\filedate{2023/12/11}
 \edef\tisdexamfileversion{\fileversion}
 \edef\tisdexamfiledate{\filedate}
 
@@ -228,9 +228,9 @@
 %%
 \iftisdexam@langenglish
 % Begin english coverpage
-\newcommand{\makecoverpage}{%
+\newcommand{\makecoverpage}[1][]{%
 \thispagestyle{empty}
-\begin{tikzpicture}[overlay]
+\begin{tikzpicture}[overlay,#1]
 \draw [thuasgreen,fill=thuasgreen] (0,0) -- (12,0) -- (11.5,-1) -- (0,-1) -- cycle;
 \node[below right,white,yshift=-1mm] at (0,0) {\setfontxviii\textbf{EXAM COVER PAGE}};
 
@@ -248,7 +248,7 @@
 \ifduaal \node [fillincolor] at (8.54,-5.32) {\checkblock}; \fi
 
 % Exam date
-\node [right,fillincolor] at (7.00, -8.5) {\setfontx \tisdexam@toetsdatum};
+\node [right,fillincolor] at (7.00, -8.55) {\setfontx \vphantom{bg}\tisdexam@toetsdatum};
 
 % Start time
 \node [right,fillincolor] at (7.00, -9.15) {\setfontx \tisdexam@begintijd};
@@ -264,9 +264,9 @@
 % Number of closed questions
 \node [right,fillincolor] at (7.00, -11.95) {\setfontx \tisdexam@aantalgeslotenvragen};
 % Cesuur
-\node [right,fillincolor] at (7.00, -12.45) {\setfontx \tisdexam@cesuur};
+\node [right,fillincolor] at (7.00, -12.53) {\setfontx \vphantom{bg}\tisdexam@cesuur};
 % Point allocation
-\node [right,fillincolor] at (7.00, -13.15) {\setfontx \tisdexam@puntenverdeling};
+\node [right,fillincolor] at (7.00, -13.22) {\setfontx \vphantom{bg}\tisdexam@puntenverdeling};
 
 % Exam paper
 \iftoetspapier \node [fillincolor] at (0.335,-14.70) {\checkblock}; \fi
@@ -310,7 +310,7 @@
 \ifgeenhulpmiddelen \node [fillincolor] at (11.09,-16.63) {\checkblock}; \fi
 
 % Comment
-\node [right,fillincolor,text width=7cm] at (9,-19) {\setfontx \tisdexam@opmerkingen} rectangle ++(2,-4) ;
+\node [right,fillincolor,text width=8cm,anchor=north west] at (9,-18.5) {\setfontx \tisdexam@opmerkingen} rectangle ++(8,-6) ;
 \end{tikzpicture}
 
 % Pull in the layout
@@ -322,9 +322,9 @@
 }
 \else
 %% Begin Dutch coverpage
-\newcommand{\makecoverpage}{%
+\newcommand{\makecoverpage}[1][]{%
 \thispagestyle{empty}
-\begin{tikzpicture}[overlay]
+\begin{tikzpicture}[overlay,#1]
 \draw [thuasgreen,fill=thuasgreen] (0,0) -- (12,0) -- (11.5,-1) -- (0,-1) -- cycle;
 \node[below right,white,yshift=-1mm] at (0,0) {\setfontxviii\textbf{TOETSVOORBLAD}};
 
@@ -342,7 +342,7 @@
 \ifduaal \node [fillincolor] at (8.66,-5.4) {\checkblock}; \fi
 
 % Exam date
-\node [right,fillincolor] at (7.20, -8.65) {\setfontx \tisdexam@toetsdatum};
+\node [right,fillincolor] at (7.20, -8.68) {\setfontx \vphantom{bg}\tisdexam@toetsdatum};
 
 % Start time
 \node [right,fillincolor] at (7.20, -9.30) {\setfontx \tisdexam@begintijd};
@@ -358,9 +358,9 @@
 % Number of closed questions
 \node [right,fillincolor] at (7.20, -12.20) {\setfontx \tisdexam@aantalgeslotenvragen};
 % Cesuur
-\node [right,fillincolor] at (7.20, -12.70) {\setfontx \tisdexam@cesuur};
+\node [right,fillincolor] at (7.20, -12.75) {\setfontx \vphantom{bg}\tisdexam@cesuur};
 % Point allocation
-\node [right,fillincolor] at (7.20, -13.38) {\setfontx \tisdexam@puntenverdeling};
+\node [right,fillincolor] at (7.20, -13.39) {\setfontx \vphantom{bg}\tisdexam@puntenverdeling};
 
 % Exam paper
 \iftoetspapier \node [fillincolor] at (0.335,-15.34) {\checkblock}; \fi
@@ -404,7 +404,7 @@
 \ifgeenhulpmiddelen \node [fillincolor] at (11.28,-17.32) {\checkblock}; \fi
 
 % Comment
-\node [right,fillincolor,text width=7cm] at (9,-19.5) {\setfontx \tisdexam@opmerkingen} rectangle ++(2,-4) ;
+\draw node [right,fillincolor,text width=8cm,anchor=north west] at (9,-19) {\setfontx \tisdexam@opmerkingen} rectangle ++(8,-6) ;
 \end{tikzpicture}
 
 \resizebox{\textwidth}{!}{%
