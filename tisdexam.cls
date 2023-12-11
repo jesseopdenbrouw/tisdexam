@@ -7,7 +7,7 @@
 %%
 %% (c)2023, J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
-%% Version 3.0alpha  -- initial release
+%% Version 3.0alpha3  -- initial release
 %%
 %% Class options:
 %%  dutch - load dutch spelling options
@@ -85,7 +85,7 @@
 %%  tikz, babel, geometry
 
 %% Credentials
-\def\fileversion{3.0alpha}
+\def\fileversion{3.0alpha3}
 \def\filedate{2023/12/02}
 \edef\tisdexamfileversion{\fileversion}
 \edef\tisdexamfiledate{\filedate}
@@ -168,7 +168,7 @@
 \newcommand{\opleiding}[1]{\def\tisdexam@opleiding{#1}}
 \newcommand{\toetsnaamkort}[1]{\def\tisdexam@toetsnaamkort{#1}}
 \newcommand{\toetsnaam}[1]{\def\tisdexam@toetsnaam{#1}}
-\newcommand{\groep}[1]{\def\tisdexam@groep{#1}}
+%%\newcommand{\groep}[1]{\def\tisdexam@groep{#1}}
 \newcommand{\toetsdatum}[1]{\def\tisdexam@toetsdatum{#1}}
 \newcommand{\toetsdatumkort}[1]{\def\tisdexam@toetsdatumkort{#1}}
 \newcommand{\begintijd}[1]{\def\tisdexam@begintijd{#1}}
@@ -278,21 +278,21 @@
 \ifruitjespapier \node [fillincolor] at (0.335,-15.85) {\checkblock}; \fi
 
 % Scrap paper
-\ifkladpapier \node [fillincolor] at (6.2,-14.70) {\checkblock}; \fi
+\ifkladpapier \node [fillincolor] at (6.19,-14.70) {\checkblock}; \fi
 % Drawing supplies
-\iftekenbenodigdheden \node [fillincolor] at (6.2,-15.06) {\checkblock}; \fi
+\iftekenbenodigdheden \node [fillincolor] at (6.19,-15.06) {\checkblock}; \fi
 % Calc simple
 \ifeenvoudigerekenmachine
-   \node [fillincolor] at (6.2,-15.55) {\checkblock}; 
+   \node [fillincolor] at (6.19,-15.55) {\checkblock}; 
    \node [fillincolor] at (6.75,-16.02) {\checkblock};
 \fi
 % Calc scientific
 \ifgrafischerekenmachine
-   \node [fillincolor] at (6.2,-15.55) {\checkblock}; 
+   \node [fillincolor] at (6.19,-15.55) {\checkblock}; 
    \node [fillincolor] at (6.75,-16.42) {\checkblock};
 \fi
 % Formula sheets
-\ifformulebladen \node [fillincolor] at (6.2,-16.80) {\checkblock}; \fi
+\ifformulebladen \node [fillincolor] at (6.19,-16.80) {\checkblock}; \fi
 
 % Book of laws
 \ifwetbundel \node [fillincolor] at (11.09,-14.72) {\checkblock}; \fi
@@ -304,7 +304,7 @@
 \ifoverig
    \node [fillincolor] at (11.09,-16.25) {\checkblock};
    % Other (text)
-   \node [right,fillincolor,] at (12.0,-16.27) {\setfontviii \tisdexam@overig};
+   \node [right,fillincolor,] at (12.0,-16.29) {\setfontviii \vphantom{bg}\tisdexam@overig};
 \fi
 % No tools
 \ifgeenhulpmiddelen \node [fillincolor] at (11.09,-16.63) {\checkblock}; \fi
@@ -337,7 +337,7 @@
 % Full Time
 \ifvoltijd \node [fillincolor] at (4.54,-5.4) {\checkblock}; \fi
 % Part time
-\ifdeeltijd \node [fillincolor] at (5.72,-5.4) {\checkblock}; \fi
+\ifdeeltijd \node [fillincolor] at (5.74,-5.4) {\checkblock}; \fi
 % Dual
 \ifduaal \node [fillincolor] at (8.66,-5.4) {\checkblock}; \fi
 
@@ -371,8 +371,8 @@
 % Graph paper
 \ifruitjespapier \node [fillincolor] at (0.335,-16.51) {\checkblock}; \fi
 
-% Scrap paper
-\ifkladpapier \node [fillincolor] at (6.3,-15.33) {\checkblock}; \fi
+% Scratch paper
+\ifkladpapier \node [fillincolor] at (6.3,-15.34) {\checkblock}; \fi
 % Drawing supplies
 \iftekenbenodigdheden \node [fillincolor] at (6.3,-15.75) {\checkblock}; \fi
 % Calc simple
@@ -391,14 +391,14 @@
 % Book of laws
 \ifwetbundel \node [fillincolor] at (11.28,-15.40) {\checkblock}; \fi
 % Own summary
-\ifaantekeningen \node [fillincolor] at (11.28,-15.80) {\checkblock}; \fi
+\ifaantekeningen \node [fillincolor] at (11.28,-15.79) {\checkblock}; \fi
 % Books
 \ifboek \node [fillincolor] at (11.28,-16.19) {\checkblock}; \fi
 % Other
 \ifoverig
    \node [fillincolor] at (11.28,-16.95) {\checkblock};
    % Other (text)
-   \node [right,fillincolor,] at (12.5,-16.98) {\setfontviii \tisdexam@overig};
+   \node [right,fillincolor,] at (12.5,-16.98) {\setfontviii \vphantom{bg}\tisdexam@overig};
 \fi
 % No tools
 \ifgeenhulpmiddelen \node [fillincolor] at (11.28,-17.32) {\checkblock}; \fi
