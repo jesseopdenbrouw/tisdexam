@@ -4,7 +4,7 @@
 %%
 %%   (c)2023, J.E.J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
-%%   v3.0\alpha -- 2023/12/02
+%%   v3.0alpha3 -- 2023/12/02
 %%
 %%   
 %%
@@ -237,8 +237,8 @@ toetsnaam en opsteller. De commando's zijn hieronder te vinden.
 \verb|\opsteller| & De opsteller van deze toets, meestal de docent die het betreffende vak geeft. \\
 \verb|\toetsdatum| & De datum waarop de toets gegeven wordt, met de maandnaam volledig uitgeschreven \\ 
 \verb|\toetsdatumkort| & Korte notatie van de toetsdatum in dd-mm-jjjj \\
-\verb|\begintijd|       & De tijdvak waarin de toets gegeven wordt, begin- en eindtijd \\
-\verb|\eindgroep|     & De groep of groepen waarvoor de toets bedoeld is \\ 
+\verb|\begintijd|       & De begintijd van de toets \\
+\verb|\eindtijd|     & De eindtijd van de toets \\ 
 \verb|\tijdsduur| & Tijdsduur van de toets \\
 \verb|\cursuscode|    & De cursuscode van het vak. \\
 \verb|\aantalpaginas| & Het aantal pagina's waaruit de toets bestaat, inclusief het voorblad \\
@@ -295,6 +295,8 @@ De commando's \verb|\aantalopenvragen| en \verb|\aantalgeslotenvragen| kunnen hi
 
 \verb|\aantalopenvragen{\numopenquestions}| \\
 \verb|\aantalgeslotenvragen{\nummultquestions}|
+
+\textbf{Let op:} het berekenen van het aantal open en gesloten vragen werkt alleen goed als gebruik wordt gemaakt van de \verb|choices| environment!
 
 Het maximaal aantal te behalen punten voor de hele toets is op te vragen via het commando
 \verb|\numpoints| en kan bijvoorbeeld als invoer dienen voor het commando \verb|\opmerkingen| of
@@ -451,7 +453,7 @@ hoofdstuk.
 
 \section{Tips}
 Het is handig om \verb|hyperref| te laden. De linkkleur is standaard zwart.
-Om De kleur in blauw te veranderen, gebruiken we:
+Om de kleur in blauw te veranderen, gebruiken we:
 
 \begin{lstlisting}
 \begin{document}
