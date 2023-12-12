@@ -153,7 +153,7 @@
 \RequirePackage{tikz}
 
 \definecolor{thuasgreen}{RGB}{158,167,0}
-\definecolor{fillincolor}{RGB}{0,0,255}
+\definecolor{fillincolor}{RGB}{0,0,0}
 
 \newcommand{\setfontxviii}{\usefont{T1}{phv}{m}{n}\fontsize{18pt}{20pt}\selectfont}
 \newcommand{\setfontx}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{12pt}\selectfont}
