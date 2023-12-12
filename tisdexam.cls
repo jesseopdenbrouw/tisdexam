@@ -7,7 +7,7 @@
 %%
 %% (c)2023, J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
-%% Version 3.0alpha4  -- initial release
+%% Version 3.0alpha5  -- initial release
 %%
 %% Class options:
 %%  dutch - load dutch spelling options
@@ -31,6 +31,7 @@
 %%  \aantalopenvragen - number of open questions/problems/excersises
 %%  \aantalgeslotenvragen - number of closed questions/problems/excersises
 %%  \opsteller - author/composer/redactor, mostly the lecturer
+%%  \tweedelezer - proof reader
 %%  \cesuur - caesura of the exam
 %%  \overig - accompanying text to \overigtrue
 %%  \puntenverdeling - point allocation and marking
@@ -85,8 +86,8 @@
 %%  tikz, babel, geometry
 
 %% Credentials
-\def\fileversion{3.0alpha4}
-\def\filedate{2023/12/11}
+\def\fileversion{3.0alpha5}
+\def\filedate{2023/12/12}
 \edef\tisdexamfileversion{\fileversion}
 \edef\tisdexamfiledate{\filedate}
 
@@ -152,12 +153,13 @@
 \RequirePackage{tikz}
 
 \definecolor{thuasgreen}{RGB}{158,167,0}
-\definecolor{fillincolor}{RGB}{0,0,0}
+\definecolor{fillincolor}{RGB}{0,0,255}
 
 \newcommand{\setfontxviii}{\usefont{T1}{phv}{m}{n}\fontsize{18pt}{20pt}\selectfont}
 \newcommand{\setfontx}{\usefont{T1}{phv}{m}{n}\fontsize{10pt}{12pt}\selectfont}
 \newcommand{\setfontxii}{\usefont{T1}{phv}{m}{n}\fontsize{12pt}{12pt}\selectfont}
 \newcommand{\setfontviii}{\usefont{T1}{phv}{m}{n}\fontsize{8pt}{8pt}\selectfont}
+\newcommand{\setfontix}{\usefont{T1}{phv}{m}{n}\fontsize{9pt}{9pt}\selectfont}
 \newcommand{\checkblock}{\rule{6pt}{6pt}}
 
 \parindent=0pt
@@ -179,6 +181,7 @@
 \newcommand{\aantalgeslotenvragen}[1]{\def\tisdexam@aantalgeslotenvragen{#1}}
 \newcommand{\opmerkingen}[1]{\def\tisdexam@opmerkingen{#1}}
 \newcommand{\opsteller}[1]{\def\tisdexam@opsteller{#1}}
+\newcommand{\tweedelezer}[1]{\def\tisdexam@tweedelezer{#1}}
 \newcommand{\cesuur}[1]{\def\tisdexam@cesuur{#1}}
 \newcommand{\toetscode}[1]{\def\tisdexam@toetscode{#1}}
 \newcommand{\overig}[1]{\def\tisdexam@overig{#1}}
@@ -188,7 +191,7 @@
 \def\tisdexam@opsteller{\textbf{??}}
 \def\tisdexam@faculteit{TIS}
 \def\tisdexam@opleiding{\textbf{??}}
-%\def\tisdexam@tweedelezer{\textbf{??}}
+\def\tisdexam@tweedelezer{\textbf{??}}
 \def\tisdexam@toetsnaamkort{\textbf{??}}
 \def\tisdexam@toetsnaam{\textbf{??}}
 \def\tisdexam@toetsdatum{\textbf{??}}
@@ -224,99 +227,102 @@
 \newif\ifoverig
 \newif\ifgeenhulpmiddelen
 
+% Simple crossout
+\tikzset{
+  checkcross/.pic={
+    % Code for a "checkcross". Do you see it?...
+    \draw (-3pt,3pt) to (3pt,-3pt);
+    \draw (-3pt,-3pt) to (3pt,3pt);
+  }
+}
+
 %% Begin coverpage
 %%
 \iftisdexam@langenglish
 % Begin english coverpage
 \newcommand{\makecoverpage}[1][]{%
 \thispagestyle{empty}
-\begin{tikzpicture}[overlay,#1]
-\draw [thuasgreen,fill=thuasgreen] (0,0) -- (12,0) -- (11.5,-1) -- (0,-1) -- cycle;
-\node[below right,white,yshift=-1mm] at (0,0) {\setfontxviii\textbf{EXAM COVER PAGE}};
-
-\node [right,fillincolor] at (1.6,-1.88) {\setfontx \textbf{\tisdexam@faculteit}};
-\node [right,fillincolor] at (0.1,-3.2) {\setfontxviii \tisdexam@toetsnaam};
-\node [right,fillincolor] at (0.1,-4.70) {\setfontxii \tisdexam@opleiding};
-\node [right,fillincolor] at (2.0,-5.975) {\setfontviii \tisdexam@toetscode};
-\node [right,fillincolor] at (0.1,-7.5) {\setfontxii \tisdexam@opsteller};
-
-% Full Time
-\ifvoltijd \node [fillincolor] at (4.49,-5.32) {\checkblock}; \fi
-% Part time
-\ifdeeltijd \node [fillincolor] at (6.00,-5.32) {\checkblock}; \fi
-% Dual
-\ifduaal \node [fillincolor] at (8.54,-5.32) {\checkblock}; \fi
-
-% Exam date
-\node [right,fillincolor] at (7.00, -8.55) {\setfontx \vphantom{bg}\tisdexam@toetsdatum};
-
-% Start time
-\node [right,fillincolor] at (7.00, -9.15) {\setfontx \tisdexam@begintijd};
-% end time
-\node [right,fillincolor] at (7.00, -9.50) {\setfontx \tisdexam@eindtijd};
-% Allowed time
-\node [right,fillincolor] at (7.00, -10.10) {\setfontx \tisdexam@tijdsduur};
-
-% Number of pages
-\node [right,fillincolor] at (7.00, -11.30) {\setfontx \tisdexam@aantalpaginas};
-% Number of open questions
-\node [right,fillincolor] at (7.00, -11.625) {\setfontx \tisdexam@aantalopenvragen};
-% Number of closed questions
-\node [right,fillincolor] at (7.00, -11.95) {\setfontx \tisdexam@aantalgeslotenvragen};
-% Cesuur
-\node [right,fillincolor] at (7.00, -12.53) {\setfontx \vphantom{bg}\tisdexam@cesuur};
-% Point allocation
-\node [right,fillincolor] at (7.00, -13.22) {\setfontx \vphantom{bg}\tisdexam@puntenverdeling};
-
-% Exam paper
-\iftoetspapier \node [fillincolor] at (0.335,-14.70) {\checkblock}; \fi
-% Answer sheet
-\ifantwoordenbladen \node [fillincolor] at (0.335,-15.06) {\checkblock}; \fi
-% Answer sheet ABCDE
-\ifantwoordenbladenabcde \node [fillincolor] at (0.335,-15.45) {\checkblock}; \fi
-% Graph paper
-\ifruitjespapier \node [fillincolor] at (0.335,-15.85) {\checkblock}; \fi
-
-% Scrap paper
-\ifkladpapier \node [fillincolor] at (6.19,-14.70) {\checkblock}; \fi
-% Drawing supplies
-\iftekenbenodigdheden \node [fillincolor] at (6.19,-15.06) {\checkblock}; \fi
-% Calc simple
+\begin{tikzpicture}[remember picture,overlay]
+\node (image) [shape=rectangle,draw=none,minimum width=\paperwidth,minimum height=\paperheight] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{tisdexam-english.pdf}};
+%
+\node [right,fillincolor] at (1.8,-0.65) {\setfontx \textbf{\tisdexam@faculteit}};
+\node [right,fillincolor] at (0.0,-2.15) {\setfontxviii \tisdexam@toetsnaam};
+\node [right,fillincolor] at (0.0,-3.50) {\setfontxii \tisdexam@opleiding};
+\node [right,fillincolor] at (2.0,-4.86) {\setfontix \tisdexam@toetscode};
+\node [right,fillincolor] at (0.0,-6.4) {\setfontx \tisdexam@opsteller{} / \tisdexam@tweedelezer};
+%
+%% Full Time
+\ifvoltijd \pic [fillincolor] at (4.38,-4.17) {checkcross}; \fi
+%% Part time
+\ifdeeltijd \pic [fillincolor] at (6.56,-4.17) {checkcross}; \fi
+%% Dual
+\ifduaal \pic [fillincolor] at (8.735,-4.17) {checkcross}; \fi
+%
+%% Exam date
+\node [right,fillincolor] at (7.40, -7.73) {\setfontx \vphantom{bg}\tisdexam@toetsdatum};
+%
+%% Start time
+\node [right,fillincolor] at (7.40, -8.35) {\setfontx \tisdexam@begintijd};
+%% end time
+\node [right,fillincolor] at (7.40, -8.72) {\setfontx \tisdexam@eindtijd};
+%% Allowed time
+\node [right,fillincolor] at (7.40, -9.40) {\setfontx \tisdexam@tijdsduur};
+%
+%% Number of pages
+\node [right,fillincolor] at (7.40, -10.50) {\setfontx \tisdexam@aantalpaginas};
+%% Number of open questions
+\node [right,fillincolor] at (7.40, -10.87) {\setfontx \tisdexam@aantalopenvragen};
+%% Number of closed questions
+\node [right,fillincolor] at (7.40, -11.25) {\setfontx \tisdexam@aantalgeslotenvragen};
+%% Cesuur
+\node [right,fillincolor] at (7.40, -11.82) {\setfontx \vphantom{bg}\tisdexam@cesuur};
+%% Point allocation
+\node [right,fillincolor] at (7.40, -12.54) {\setfontx \vphantom{bg}\tisdexam@puntenverdeling};
+%
+%% Exam paper
+\iftoetspapier \pic [fillincolor] at (-0.08,-14.26) {checkcross}; \fi
+%% Answer sheet
+\ifantwoordenbladen \pic [fillincolor] at (-0.08,-14.78) {checkcross}; \fi
+%% Answer sheet ABCDE
+\ifantwoordenbladenabcde \pic [fillincolor] at (-0.08,-15.30) {checkcross}; \fi
+%% Graph paper
+\ifruitjespapier \pic [fillincolor] at (-0.08,-15.81) {checkcross}; \fi
+%
+%% Scratch paper
+\ifkladpapier \pic [fillincolor] at (6.17,-14.26) {checkcross}; \fi
+%% Drawing supplies
+\iftekenbenodigdheden \pic [fillincolor] at (6.17,-14.78) {checkcross}; \fi
+%% Calc simple
 \ifeenvoudigerekenmachine
-   \node [fillincolor] at (6.19,-15.55) {\checkblock}; 
-   \node [fillincolor] at (6.75,-16.02) {\checkblock};
+   \pic [fillincolor] at (6.17,-15.29) {checkcross}; 
+   \pic [fillincolor] at (6.775,-15.81) {checkcross};
 \fi
-% Calc scientific
+%% Calc scientific
 \ifgrafischerekenmachine
-   \node [fillincolor] at (6.19,-15.55) {\checkblock}; 
-   \node [fillincolor] at (6.75,-16.42) {\checkblock};
+   \pic [fillincolor] at (6.17,-15.29) {checkcross}; 
+   \pic [fillincolor] at (6.775,-16.33) {checkcross};
 \fi
-% Formula sheets
-\ifformulebladen \node [fillincolor] at (6.19,-16.80) {\checkblock}; \fi
-
-% Book of laws
-\ifwetbundel \node [fillincolor] at (11.09,-14.72) {\checkblock}; \fi
-% Own summary
-\ifaantekeningen \node [fillincolor] at (11.09,-15.11) {\checkblock}; \fi
-% Books
-\ifboek \node [fillincolor] at (11.09,-15.49) {\checkblock}; \fi
-% Other
+%% Formula sheets
+\ifformulebladen \pic [fillincolor] at (6.17,-16.85) {checkcross};  \fi
+%
+%% Book of laws
+\ifwetbundel \pic [fillincolor] at (11.42,-14.25) {checkcross}; \fi
+%% Own summary
+\ifaantekeningen \pic [fillincolor] at (11.42,-14.77) {checkcross}; \fi
+%% Books
+\ifboek \pic [fillincolor] at (11.42,-15.29) {checkcross}; \fi
+%% Other
 \ifoverig
-   \node [fillincolor] at (11.09,-16.25) {\checkblock};
+   \pic [fillincolor] at (11.42,-16.17) {checkcross};
    % Other (text)
-   \node [right,fillincolor,] at (12.0,-16.29) {\setfontviii \vphantom{bg}\tisdexam@overig};
+   \node [right,fillincolor] at (12.50,-16.22) {\setfontviii \vphantom{bg}\tisdexam@overig};
 \fi
-% No tools
-\ifgeenhulpmiddelen \node [fillincolor] at (11.09,-16.63) {\checkblock}; \fi
-
-% Comment
-\node [right,fillincolor,text width=8cm,anchor=north west] at (9,-18.5) {\setfontx \tisdexam@opmerkingen} rectangle ++(8,-6) ;
+%% No tools
+\ifgeenhulpmiddelen \pic [fillincolor] at (11.42,-16.69) {checkcross}; \fi
+%
+%% Comment
+\node [right,fillincolor,text width=8cm,anchor=north west] at (9.5,-18.5) {\setfontx \tisdexam@opmerkingen} rectangle ++(8,-6) ;
 \end{tikzpicture}
-
-% Pull in the layout
-\resizebox{\textwidth}{!}{%
-\input{tisdexam-english.pgf}%
-}
 \newpage
 \newgeometry{left=2.0cm,right=2.0cm,top=2.0cm,bottom=1.4in}
 }
@@ -324,92 +330,88 @@
 %% Begin Dutch coverpage
 \newcommand{\makecoverpage}[1][]{%
 \thispagestyle{empty}
-\begin{tikzpicture}[overlay,#1]
-\draw [thuasgreen,fill=thuasgreen] (0,0) -- (12,0) -- (11.5,-1) -- (0,-1) -- cycle;
-\node[below right,white,yshift=-1mm] at (0,0) {\setfontxviii\textbf{TOETSVOORBLAD}};
-
-\node [right,fillincolor] at (1.4,-1.92) {\setfontx \textbf{\tisdexam@faculteit}};
-\node [right,fillincolor] at (0.1,-3.2) {\setfontxviii \tisdexam@toetsnaam};
-\node [right,fillincolor] at (0.1,-4.70) {\setfontxii \tisdexam@opleiding};
-\node [right,fillincolor] at (2.0,-6.08) {\setfontviii \tisdexam@toetscode};
-\node [right,fillincolor] at (0.1,-7.6) {\setfontxii \tisdexam@opsteller};
-
-% Full Time
-\ifvoltijd \node [fillincolor] at (4.54,-5.4) {\checkblock}; \fi
-% Part time
-\ifdeeltijd \node [fillincolor] at (5.74,-5.4) {\checkblock}; \fi
-% Dual
-\ifduaal \node [fillincolor] at (8.66,-5.4) {\checkblock}; \fi
-
-% Exam date
-\node [right,fillincolor] at (7.20, -8.68) {\setfontx \vphantom{bg}\tisdexam@toetsdatum};
-
-% Start time
-\node [right,fillincolor] at (7.20, -9.30) {\setfontx \tisdexam@begintijd};
-% end time
-\node [right,fillincolor] at (7.20, -9.68) {\setfontx \tisdexam@eindtijd};
-% Allowed time
-\node [right,fillincolor] at (7.20, -10.30) {\setfontx \tisdexam@tijdsduur};
-
-% Number of pages
-\node [right,fillincolor] at (7.20, -11.50) {\setfontx \tisdexam@aantalpaginas};
-% Number of open questions
-\node [right,fillincolor] at (7.20, -11.83) {\setfontx \tisdexam@aantalopenvragen};
-% Number of closed questions
-\node [right,fillincolor] at (7.20, -12.20) {\setfontx \tisdexam@aantalgeslotenvragen};
-% Cesuur
-\node [right,fillincolor] at (7.20, -12.75) {\setfontx \vphantom{bg}\tisdexam@cesuur};
-% Point allocation
-\node [right,fillincolor] at (7.20, -13.39) {\setfontx \vphantom{bg}\tisdexam@puntenverdeling};
-
-% Exam paper
-\iftoetspapier \node [fillincolor] at (0.335,-15.34) {\checkblock}; \fi
-% Answer sheet
-\ifantwoordenbladen \node [fillincolor] at (0.335,-15.73) {\checkblock}; \fi
-% Answer sheet ABCDE
-\ifantwoordenbladenabcde \node [fillincolor] at (0.335,-16.12) {\checkblock}; \fi
-% Graph paper
-\ifruitjespapier \node [fillincolor] at (0.335,-16.51) {\checkblock}; \fi
-
-% Scratch paper
-\ifkladpapier \node [fillincolor] at (6.3,-15.34) {\checkblock}; \fi
-% Drawing supplies
-\iftekenbenodigdheden \node [fillincolor] at (6.3,-15.75) {\checkblock}; \fi
-% Calc simple
+\begin{tikzpicture}[remember picture,overlay]
+\node (image) [shape=rectangle,draw=none,minimum width=\paperwidth,minimum height=\paperheight] at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{tisdexam-dutch.pdf}};
+%
+\node [right,fillincolor] at (1.5,-0.65) {\setfontx \textbf{\tisdexam@faculteit}};
+\node [right,fillincolor] at (0.0,-2.15) {\setfontxviii \tisdexam@toetsnaam};
+\node [right,fillincolor] at (0.0,-3.50) {\setfontxii \tisdexam@opleiding};
+\node [right,fillincolor] at (2.0,-4.86) {\setfontix \tisdexam@toetscode};
+\node [right,fillincolor] at (0.0,-6.4) {\setfontx \tisdexam@opsteller{} / \tisdexam@tweedelezer};
+%
+%% Full Time
+\ifvoltijd \pic [fillincolor] at (4.38,-4.17) {checkcross}; \fi
+%% Part time
+\ifdeeltijd \pic [fillincolor] at (6.56,-4.17) {checkcross}; \fi
+%% Dual
+\ifduaal \pic [fillincolor] at (8.735,-4.17) {checkcross}; \fi
+%
+%% Exam date
+\node [right,fillincolor] at (7.40, -7.31) {\setfontx \vphantom{bg}\tisdexam@toetsdatum};
+%
+%% Start time
+\node [right,fillincolor] at (7.40, -7.93) {\setfontx \tisdexam@begintijd};
+%% end time
+\node [right,fillincolor] at (7.40, -8.31) {\setfontx \tisdexam@eindtijd};
+%% Allowed time
+\node [right,fillincolor] at (7.40, -8.95) {\setfontx \tisdexam@tijdsduur};
+%
+%% Number of pages
+\node [right,fillincolor] at (7.40, -10.08) {\setfontx \tisdexam@aantalpaginas};
+%% Number of open questions
+\node [right,fillincolor] at (7.40, -10.44) {\setfontx \tisdexam@aantalopenvragen};
+%% Number of closed questions
+\node [right,fillincolor] at (7.40, -10.80) {\setfontx \tisdexam@aantalgeslotenvragen};
+%% Cesuur
+\node [right,fillincolor] at (7.40, -11.40) {\setfontx \vphantom{bg}\tisdexam@cesuur};
+%% Point allocation
+\node [right,fillincolor] at (7.40, -12.07) {\setfontx \vphantom{bg}\tisdexam@puntenverdeling};
+%
+%% Exam paper
+\iftoetspapier \pic [fillincolor] at (-0.08,-13.88) {checkcross}; \fi
+%% Answer sheet
+\ifantwoordenbladen \pic [fillincolor] at (-0.08,-14.40) {checkcross}; \fi
+%% Answer sheet ABCDE
+\ifantwoordenbladenabcde \pic [fillincolor] at (-0.08,-14.92) {checkcross}; \fi
+%% Graph paper
+\ifruitjespapier \pic [fillincolor] at (-0.08,-15.44) {checkcross}; \fi
+%
+%% Scratch paper
+\ifkladpapier \pic [fillincolor] at (6.17,-13.88) {checkcross}; \fi
+%% Drawing supplies
+\iftekenbenodigdheden \pic [fillincolor] at (6.17,-14.40) {checkcross}; \fi
+%% Calc simple
 \ifeenvoudigerekenmachine
-   \node [fillincolor] at (6.3,-16.22) {\checkblock}; 
-   \node [fillincolor] at (6.87,-16.70) {\checkblock};
+   \pic [fillincolor] at (6.17,-14.92) {checkcross}; 
+   \pic [fillincolor] at (6.775,-15.44) {checkcross};
 \fi
-% Calc scientific
+%% Calc scientific
 \ifgrafischerekenmachine
-   \node [fillincolor] at (6.3,-16.22) {\checkblock}; 
-   \node [fillincolor] at (6.87,-17.10) {\checkblock};
+   \pic [fillincolor] at (6.17,-14.92) {checkcross}; 
+   \pic [fillincolor] at (6.775,-15.95) {checkcross};
 \fi
-% Formula sheets
-\ifformulebladen \node [fillincolor] at (6.3,-17.48) {\checkblock}; \fi
-
-% Book of laws
-\ifwetbundel \node [fillincolor] at (11.28,-15.40) {\checkblock}; \fi
-% Own summary
-\ifaantekeningen \node [fillincolor] at (11.28,-15.79) {\checkblock}; \fi
-% Books
-\ifboek \node [fillincolor] at (11.28,-16.19) {\checkblock}; \fi
-% Other
+%% Formula sheets
+\ifformulebladen \pic [fillincolor] at (6.17,-16.47) {checkcross};  \fi
+%
+%% Book of laws
+\ifwetbundel \pic [fillincolor] at (11.42,-13.88) {checkcross}; \fi
+%% Own summary
+\ifaantekeningen \pic [fillincolor] at (11.42,-14.40) {checkcross}; \fi
+%% Books
+\ifboek \pic [fillincolor] at (11.42,-14.92) {checkcross}; \fi
+%% Other
 \ifoverig
-   \node [fillincolor] at (11.28,-16.95) {\checkblock};
+   \pic [fillincolor] at (11.42,-15.80) {checkcross};
    % Other (text)
-   \node [right,fillincolor,] at (12.5,-16.98) {\setfontviii \vphantom{bg}\tisdexam@overig};
+   \node [right,fillincolor] at (12.70,-15.85) {\setfontviii \vphantom{bg}\tisdexam@overig};
 \fi
-% No tools
-\ifgeenhulpmiddelen \node [fillincolor] at (11.28,-17.32) {\checkblock}; \fi
-
-% Comment
-\draw node [right,fillincolor,text width=8cm,anchor=north west] at (9,-19) {\setfontx \tisdexam@opmerkingen} rectangle ++(8,-6) ;
+%% No tools
+\ifgeenhulpmiddelen \pic [fillincolor] at (11.42,-16.32) {checkcross}; \fi
+%
+%% Comment
+\node [right,fillincolor,text width=8cm,anchor=north west] at (9.5,-18.5) {\setfontx \tisdexam@opmerkingen} rectangle ++(8,-6) ;
 \end{tikzpicture}
 
-\resizebox{\textwidth}{!}{%
-\input{tisdexam-dutch.pgf}%
-}
 \newpage
 \newgeometry{left=2.0cm,right=2.0cm,top=2.0cm,bottom=1.4in}
 }
