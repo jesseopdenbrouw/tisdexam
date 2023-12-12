@@ -4,7 +4,7 @@
 %%
 %%   (c)2023, J.E.J. op den Brouw <J.E.J.opdenBrouw@hhs.nl>
 %%
-%%   v3.0alpha4 -- 2023/12/11
+%%   v3.0alpha5 -- 2023/12/12
 %%
 %%   
 %%
@@ -205,9 +205,10 @@ toetsnaam en opsteller. De commando's zijn hieronder te vinden.
 \verb|\opleiding| & De opleiding, volledig uitgeschreven\\ 
 \verb|\toetsnaam| & De afkorting van de toets/vak \\
 \verb|\toetsnaamkort| & De (korte) code van de toets/vak, wordt in de footer afgedrukt \\ 
-\verb|\opsteller| & De opsteller van deze toets, meestal de docent die het betreffende vak geeft. \\
+\verb|\opsteller| & De opsteller van deze toets, meestal de docent die het betreffende vak geeft \\
+\verb|\tweedelezer| & De tweede lezer die de toets controleert \\
 \verb|\toetsdatum| & De datum waarop de toets gegeven wordt, met de maandnaam volledig uitgeschreven \\ 
-\verb|\toetsdatumkort| & Korte notatie van de toetsdatum in dd-mm-jjjj \\
+\verb|\toetsdatumkort| & Korte notatie van de toetsdatum in dd-mm-jjjj, wordt in de footer afgedrukt \\
 \verb|\begintijd|       & De begintijd van de toets \\
 \verb|\eindtijd|     & De eindtijd van de toets \\ 
 \verb|\tijdsduur| & Tijdsduur van de toets \\
@@ -225,10 +226,10 @@ of false (default) gezet kunnen worden.
 
 \begin{tabular}{lp{10cm}}
 \verb|\voltijdtrue| & Toets voor voltijd \\
-\verb|\deeltijdtrue| & toets voor deeltijd \\
-\verb|\duaaltrue| & toets voor duaal \\
+\verb|\deeltijdtrue| & Toets voor deeltijd \\
+\verb|\duaaltrue| & Toets voor duaal \\
 \verb|\toetspapiertrue| & Gelinieerd papier \\
-\verb|\antwoordenbladentrue| & Opgavebladen met ruimte om de vragen te beantwoorden \\
+\verb|\antwoordenbladentrue| & Antwoordformulier \\
 \verb|\antwoordenbladenabcdetrue| & Antwoordformulier ABCDE \\
 \verb|\ruitjespapiertrue| & Ruitjespapier \\
 \verb|\kladpapiertrue| & Kladpapier \\
@@ -267,7 +268,7 @@ De commando's \verb|\aantalopenvragen| en \verb|\aantalgeslotenvragen| kunnen hi
 \verb|\aantalopenvragen{\numopenquestions}| \\
 \verb|\aantalgeslotenvragen{\nummultquestions}|
 
-\textbf{Let op:} het berekenen van het aantal open en gesloten vragen werkt alleen goed als gebruik wordt gemaakt van de \verb|choices| environment!
+\textbf{Let op:} het berekenen van het aantal open en gesloten vragen werkt alleen goed als gebruik wordt gemaakt van de \verb|choices| en/of \verb|oneparchoices| de environments!
 
 Het maximaal aantal te behalen punten voor de hele toets is op te vragen via het commando
 \verb|\numpoints| en kan bijvoorbeeld als invoer dienen voor het commando \verb|\opmerkingen| of
@@ -296,7 +297,8 @@ Het maximaal aantal te behalen punten voor de hele toets is op te vragen via het
 \eindtijd{9:30}
 \tijdsduur{45}
 
-%% Automatic calculated if not used
+%% Automatic calculated if not set
+%% Use these is automatic calculations fails
 %\aantalpaginas{}
 %\aantalopenvragen{}
 %\aantalgeslotenvragen{}
@@ -331,11 +333,11 @@ Het maximaal aantal te behalen punten voor de hele toets is op te vragen via het
 \section{Genereren van het voorblad}
 
 Het voorblad wordt gegenereerd met het commmando \verb|\makecoverpage|.
-Bij gebruik van een bepaald lettertype kan het zijn dat de gevulde checkbboxes een beetje verschoven zijn. Het raamwerk is dan licht verschoven. Dat kan gecompenseerd worden met optionele argumenten bij \verb|\makecoverpage|, bijvoorbeeld:
-
-\verb|\makecoverpage[xshift=1mm,yshift=1mm]|
-
-De verschuiving mag ook negatoef zijn.
+%Bij gebruik van een bepaald lettertype kan het zijn dat de gevulde checkbboxes een beetje verschoven zijn. Het raamwerk is dan licht verschoven. Dat kan gecompenseerd worden met optionele argumenten bij \verb|\makecoverpage|, bijvoorbeeld:
+%
+%\verb|\makecoverpage[xshift=1mm,yshift=1mm]|
+%
+%De verschuiving mag ook negatief zijn.
 
 \section{Aangepaste \DocClass{exam} class commando's}
 Een aantal commando's uit de \DocClass{exam} class is aangepast.
