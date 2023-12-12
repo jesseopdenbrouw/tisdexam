@@ -2,9 +2,9 @@
 
 # Document Class `tisdexam`
 
-versie: 3.0alpha4
+versie: 3.0alpha5
 
-datum:  11-dec-2023
+datum:  12-dec-2023
 
 
 -----------------------
@@ -22,8 +22,8 @@ een foutmelding.
 De document class bestaat uit *drie* bestanden;
 
 * tisdexam.cls
-* tisdexam-dutch.pgf
-* tisdexam-english.pgf
+* tisdexam-dutch.pdf
+* tisdexam-english.pdf
 
 LEES VOORAL DE DOCUMENTATIE.
 
@@ -34,4 +34,4 @@ Deze document class is getest met TeXlive 2022 en TexStudio 4.6.3
 
 TexStudio 4.6.3 (Windows, niet op Linux) crasht regelmatig met deze class. Gebruik zolang TexMaker.
 
-Jesse, 11-dec-2024
+Jesse, 12-dec-2023
