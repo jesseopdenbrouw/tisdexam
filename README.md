@@ -28,10 +28,6 @@ De document class bestaat uit *drie* bestanden;
 LEES VOORAL DE DOCUMENTATIE.
 
 
-Deze document class is getest met TeXlive 2022 en TexStudio 4.6.3
-
-**Noot**
-
-TexStudio 4.6.3 (Windows, niet op Linux) crasht regelmatig met deze class. Gebruik zolang TexMaker.
+Deze document class is getest met TeXlive 2022 en TexStudio 4.7.1.
 
 Jesse, 12-dec-2023
