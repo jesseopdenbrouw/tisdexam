@@ -19,11 +19,11 @@ een foutmelding.
 
 Er is een nieuw boolean bijgekomen
 
- \ifwetenchappelijkerekenmachine
+`\wetenchappelijkerekenmachinetrue`
 
 voor wetenschappelijke rekenmachine. Gebruik
 
- \ifgrafischerekenmachine
+`\grafischerekenmachinetrue`
 
 voor een grafische rekenmachine.
 
