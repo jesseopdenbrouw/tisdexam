@@ -2,18 +2,16 @@
 
 # Document Class `tisdexam`
 
-versie: 3.1a
+versie: 3.1b
 
-datum:  27-september-2024
+datum:  28-augustus-2025
 
 
 -----------------------
 Dit is de nieuwe document class tisdexam die geschikt is voor de
-toetsvoorbladen vanaf het schooljaar 2024-2025.
+toetsvoorbladen vanaf het schooljaar 2025-2026.
 
 Zowel de nederlandse als de engelse toetsvoorbladen zijn geimplementeerd.
-
-Hedde heeft de voorbladen aangepast, nu staan de jaartallen 2024 en 2025 onderaan.
 
 **LET OP:**
 
@@ -28,4 +26,4 @@ LEES VOORAL DE DOCUMENTATIE.
 
 Deze document class is getest met TeXlive 2022 en TexStudio 4.7.1.
 
-Jesse, 27-september-2024
+Jesse, 28-augustus-2025
